@@ -1,872 +1,383 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Team A's innovation portfolio for IE University (student project, IE Executive MBA, Corporate Entrepreneurship).">
-<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>IE Innovation Portfolio</title>
-<meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
 <style>
-/* Layout: a long-scroll briefing in the visual language of today's ie.edu: white header, solid indigo hero and closing band, light grey page, square cards, bold uppercase Montserrat headings over serif body text. Deliberately single (light) theme, like ie.edu. */
-:root {
-  color-scheme: light;
-  --bg: #f6f6f7;
-  --surface: #ffffff;
-  --surface-2: #eceef3;
-  --ink: #0f0f0f;
-  --muted: #55576a;
-  --line: #dcdde3;
-  --brand: #170063;
-  --sky: #86bafb;
-  --corp: #0097dc;
-  --h1: #170063;
-  --h2: #0097dc;
-  --h3: #86bafb;
-  --on-h1: #ffffff;
-  --on-h2: #ffffff;
-  --on-h3: #170063;
-  --h1-soft: #e8e4f5;
-  --h2-soft: #dcf0fa;
-  --h3-soft: #e6f0fe;
-  --good: #1b7a50;
-  --hero-bg: #170063;
-  --hero-ink: #ffffff;
-  --hero-muted: #cdc7ea;
-  --hero-line: #3b2c86;
-  --font-head: "Montserrat", "Helvetica Neue", Arial, sans-serif;
-  --font-body: "Source Serif 4", Georgia, "Times New Roman", serif;
-  --font-display: "Source Serif 4", Georgia, "Times New Roman", serif;
-  --font-data: "Montserrat", "Helvetica Neue", Arial, sans-serif;
-  --radius: 0px;
-}
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: calc(72px + env(safe-area-inset-top, 0px)); }
-body { background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 17px; line-height: 1.55; }
-body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--surface); }
-.gut { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
-.inner { max-width: 1140px; margin: 0 auto; }
-h1, h2, h3, h4 { margin: 0; text-wrap: balance; }
-h2 { font-family: var(--font-head); font-weight: 800; text-transform: uppercase; font-size: clamp(1.7rem, 3.4vw, 2.55rem); line-height: 1.05; letter-spacing: -0.005em; color: var(--ink); }
-h3 { font-family: var(--font-head); font-weight: 700; font-size: 1.02rem; line-height: 1.3; }
-p { margin: 0; }
-a { color: var(--brand); text-decoration-color: var(--sky); text-underline-offset: 3px; }
-a:hover { color: var(--corp); }
-.mono { font-family: var(--font-data); font-variant-numeric: tabular-nums; }
-.eyebrow { font-family: var(--font-head); font-weight: 700; font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
-.lede { color: var(--muted); max-width: 66ch; font-size: 1.08rem; }
-:focus-visible { outline: 3px solid var(--corp); outline-offset: 2px; }
-button { font: inherit; color: inherit; }
-.btn { font-family: var(--font-head); font-weight: 700; font-size: 0.72rem; letter-spacing: 0.05em; text-transform: uppercase; border: 1px solid var(--ink); background: var(--surface); padding: 10px 16px; cursor: pointer; border-radius: 0; }
-.btn:hover { background: var(--surface-2); }
-.btn[aria-pressed="true"] { background: var(--brand); color: #fff; border-color: var(--brand); }
-.pill { font-family: var(--font-head); font-weight: 700; font-size: 0.66rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 4px 9px; border-radius: 2px; white-space: nowrap; display: inline-block; }
-.pill.H1 { background: var(--h1-soft); color: var(--h1); }
-.pill.H2 { background: var(--h2-soft); color: #00628f; }
-.pill.H3 { background: var(--h3-soft); color: var(--brand); }
-.est { font-family: var(--font-head); font-weight: 700; font-size: 0.62rem; letter-spacing: 0.06em; text-transform: uppercase; border: 1px solid currentColor; padding: 1px 7px; opacity: 0.8; }
-
-/* Nav: white, like ie.edu's header */
-.nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: var(--surface); border-bottom: 1px solid var(--line); }
-.nav .inner { display: flex; align-items: center; gap: 16px; height: 64px; }
-.brand { color: var(--brand); text-decoration: none; font-family: var(--font-head); font-weight: 800; text-transform: uppercase; letter-spacing: 0.01em; white-space: nowrap; font-size: 0.86rem; line-height: 1.15; }
-.brand span { display: block; color: var(--muted); font-weight: 600; font-size: 0.68rem; letter-spacing: 0.06em; }
-.navlinks { display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; min-width: 0; flex: 1; justify-content: flex-end; }
-.navlinks::-webkit-scrollbar { display: none; }
-.navlinks a { color: var(--ink); text-decoration: none; font-family: var(--font-head); font-weight: 700; font-size: 0.72rem; letter-spacing: 0.03em; text-transform: uppercase; padding: 8px 10px; white-space: nowrap; }
-.navlinks a:hover { color: var(--brand); }
-.navlinks a.on { color: var(--brand); box-shadow: inset 0 -2px 0 var(--brand); }
-
-/* Hero: solid IE indigo */
-.hero { background: var(--hero-bg); color: var(--hero-ink); padding-block: 64px 72px; overflow: hidden; }
-.hero .inner { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 44px; align-items: center; }
-.hero .eyebrow { color: var(--hero-muted); }
-.hero h1 { font-family: var(--font-head); font-weight: 800; text-transform: uppercase; font-size: clamp(2.3rem, 5.4vw, 4rem); line-height: 1.0; letter-spacing: -0.01em; margin: 16px 0 20px; }
-.hero h1 i { color: var(--sky); font-style: normal; }
-.hero .lede { color: var(--hero-muted); font-size: 1.15rem; }
-.disclaimer { margin-top: 14px; font-family: var(--font-head); font-weight: 600; font-size: 0.72rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--hero-muted); border-left: 2px solid var(--sky); padding-left: 10px; }
-.hero-stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: 30px; border-top: 1px solid var(--hero-line); }
-.hero-stats div { padding: 16px 12px 0 0; min-width: 0; }
-.hero-stats b { display: block; font-family: var(--font-head); font-size: 1.55rem; font-weight: 800; color: var(--hero-ink); }
-.hero-stats span { font-size: 0.86rem; color: var(--hero-muted); }
-.hero-cta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px; }
-.hero-cta a { text-decoration: none; font-family: var(--font-head); font-weight: 700; font-size: 0.74rem; letter-spacing: 0.05em; text-transform: uppercase; padding: 15px 22px; }
-.hero-cta .primary { background: #ffffff; color: var(--ink); }
-.hero-cta .primary:hover { background: var(--sky); color: var(--brand); }
-.hero-cta .ghost { border: 1px solid #ffffff; color: #ffffff; }
-.hero-cta .ghost:hover { background: #ffffff; color: var(--brand); }
-.challenge-card { border: 1px solid var(--hero-line); padding: 20px 22px; margin-top: 18px; background: rgba(255, 255, 255, 0.04); }
-.challenge-card p { font-family: var(--font-display); font-size: 1.12rem; line-height: 1.5; margin-top: 8px; color: #ffffff; }
-.orbit { width: 100%; max-width: 440px; justify-self: center; display: block; margin: 0 auto; }
-.orbit text { font-family: var(--font-head); font-weight: 700; font-size: 11px; letter-spacing: 0.06em; }
-.orbit .core-label { font-family: var(--font-head); font-weight: 800; font-size: 26px; letter-spacing: 0; }
-@keyframes grow { from { transform: scale(0.6); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-.orbit .ring { transform-origin: 230px 230px; animation: grow 0.9s cubic-bezier(.2,.8,.2,1) both; }
-.orbit .ring:nth-child(2) { animation-delay: 0.12s; } .orbit .ring:nth-child(3) { animation-delay: 0.24s; }
-
-/* Chapters */
-.chapter { padding-block: 80px 8px; }
-.chapter .inner { display: flex; flex-direction: column; gap: 28px; }
-.chap-head { display: grid; grid-template-columns: 4.2rem minmax(0, 1fr); gap: 4px 18px; align-items: start; }
-.chap-num { font-family: var(--font-head); font-weight: 800; font-size: 1.1rem; color: var(--brand); border-top: 3px solid var(--brand); padding-top: 8px; }
-.chap-head .text { display: flex; flex-direction: column; gap: 12px; }
-.panel { background: var(--surface); border: 1px solid var(--line); padding: 22px; min-width: 0; }
-.grid2 { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 18px; }
-.grid3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
-
-/* 01 Future */
-.driver { display: flex; flex-direction: column; gap: 12px; border-top: 4px solid var(--brand); }
-.driver .star { font-family: var(--font-head); font-weight: 700; font-size: 0.68rem; color: var(--corp); letter-spacing: 0.08em; text-transform: uppercase; }
-.seg2 { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--ink); }
-.seg2 button { border: 0; background: var(--surface); padding: 9px; cursor: pointer; font-family: var(--font-head); font-weight: 700; font-size: 0.7rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--ink); }
-.seg2 button[aria-pressed="true"] { background: var(--brand); color: #ffffff; }
-.future-body { font-size: 0.95rem; display: flex; flex-direction: column; gap: 8px; min-height: 9.5rem; }
-.future-body b { font-family: var(--font-head); font-size: 0.95rem; }
-.future-body .pick { color: var(--good); font-family: var(--font-head); font-weight: 700; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.06em; }
-.future-body ul { margin: 0; padding-left: 18px; color: var(--muted); font-size: 0.9rem; display: flex; flex-direction: column; gap: 4px; }
-.story { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 22px; }
-.story blockquote { margin: 0; font-family: var(--font-display); font-size: 1.22rem; line-height: 1.55; }
-.ot ul { margin: 6px 0 0; padding-left: 18px; font-size: 0.93rem; color: var(--muted); display: flex; flex-direction: column; gap: 3px; }
-.ot h4 { font-family: var(--font-head); font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.06em; }
-.ot .thr h4 { color: #b42318; } .ot .opp h4 { color: var(--good); }
-.stances { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
-.stance { text-align: left; border: 1px solid var(--line); background: var(--surface); padding: 18px; cursor: pointer; display: flex; flex-direction: column; gap: 6px; border-radius: 0; }
-.stance:hover { border-color: var(--ink); }
-.stance[aria-pressed="true"] { border-color: var(--brand); box-shadow: inset 0 0 0 2px var(--brand); }
-.stance b { font-family: var(--font-head); font-weight: 800; font-size: 1.05rem; text-transform: uppercase; color: var(--brand); }
-.stance span { font-size: 0.92rem; color: var(--muted); }
-.stance .mono { font-size: 0.74rem; font-weight: 700; color: var(--ink); }
-
-/* 02 Budget */
-.bud-figs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
-.fig { display: flex; flex-direction: column; gap: 6px; }
-.fig b { font-family: var(--font-head); font-size: 2rem; font-weight: 800; line-height: 1.1; }
-.fig small { color: var(--muted); font-size: 0.9rem; }
-.fig.main { background: var(--brand); color: #ffffff; border-color: var(--brand); }
-.fig.main small, .fig.main .eyebrow { color: var(--hero-muted); }
-.sim { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 26px; }
-.ctrl { display: flex; flex-direction: column; gap: 8px; }
-.ctrl label { display: flex; justify-content: space-between; font-family: var(--font-head); font-weight: 700; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.04em; }
-.ctrl output { font-family: var(--font-head); color: var(--brand); }
-input[type=range] { width: 100%; accent-color: var(--brand); }
-.presets { display: flex; flex-wrap: wrap; gap: 8px; }
-.sim-out { display: flex; flex-direction: column; gap: 14px; }
-.sim-total { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
-.sim-total b { font-family: var(--font-head); font-size: 2.6rem; font-weight: 800; color: var(--brand); }
-.sim-total span { color: var(--muted); font-size: 0.92rem; }
-.stackbar { display: flex; height: 58px; overflow: hidden; }
-.stackbar div { display: flex; flex-direction: column; justify-content: center; padding: 0 12px; min-width: 0; transition: flex-grow .35s ease; overflow: hidden; }
-.stackbar b { font-family: var(--font-head); font-weight: 800; font-size: 1rem; white-space: nowrap; }
-.stackbar small { font-family: var(--font-head); font-weight: 600; font-size: 0.66rem; text-transform: uppercase; letter-spacing: 0.04em; white-space: nowrap; }
-.waffle { display: grid; grid-template-columns: repeat(20, minmax(0, 1fr)); gap: 3px; }
-.waffle i { aspect-ratio: 1; background: var(--surface-2); }
-.waffle-note { font-size: 0.84rem; color: var(--muted); }
-.diff { font-size: 0.9rem; color: var(--muted); border-top: 1px dashed var(--line); padding-top: 10px; }
-
-/* 03 Bets */
-.toolbar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; }
-.toolbar .left, .toolbar .right { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
-select { font-family: var(--font-head); font-weight: 600; font-size: 0.8rem; padding: 9px 10px; border: 1px solid var(--ink); background: var(--surface); color: var(--ink); border-radius: 0; }
-.bets { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
-.bet { border: 1px solid var(--line); background: var(--surface); padding: 18px; display: flex; flex-direction: column; gap: 10px; min-width: 0; position: relative; overflow: hidden; }
-.bet::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 4px; }
-.bet.H1::before { background: var(--h1); } .bet.H2::before { background: var(--h2); } .bet.H3::before { background: var(--h3); }
-.bet .row { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
-.bet h3 { font-size: 1rem; }
-.bet p { font-size: 0.92rem; color: var(--muted); }
-.bet .amt { font-family: var(--font-head); font-weight: 800; color: var(--brand); }
-.bet .score { font-family: var(--font-head); font-weight: 600; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); }
-.bet details { border-top: 1px solid var(--line); padding-top: 8px; font-size: 0.9rem; }
-.bet summary { cursor: pointer; font-family: var(--font-head); font-weight: 700; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.04em; }
-.bet dl { display: grid; grid-template-columns: 6.6rem minmax(0, 1fr); gap: 6px 10px; margin: 10px 0 0; }
-.bet dt { color: var(--muted); font-family: var(--font-head); font-weight: 700; font-size: 0.64rem; text-transform: uppercase; letter-spacing: 0.05em; padding-top: 3px; }
-.bet dd { margin: 0; }
-.bet .open { align-self: flex-start; border: 0; background: none; color: var(--brand); cursor: pointer; padding: 0; font-family: var(--font-head); font-weight: 700; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; }
-.bet .open:hover { color: var(--corp); }
-.parked { font-size: 0.92rem; color: var(--muted); }
-.parked ul { margin: 8px 0 0; padding-left: 18px; columns: 2; column-gap: 28px; }
-
-/* 04 Map */
-.mapwrap { overflow-x: auto; }
-svg.rmap { width: 100%; min-width: 560px; height: auto; display: block; }
-svg.rmap text { font-family: var(--font-head); font-size: 11px; font-weight: 600; fill: var(--muted); }
-svg.rmap .t { font-size: 11px; font-weight: 700; fill: var(--ink); text-transform: uppercase; letter-spacing: 0.05em; }
-svg.rmap .gl { stroke: var(--line); }
-svg.rmap .zone { fill: var(--h3-soft); }
-svg.rmap .b { cursor: pointer; stroke: var(--surface); stroke-width: 2; transition: opacity .2s; }
-svg.rmap .b:hover, svg.rmap .b:focus { stroke: var(--ink); stroke-width: 3; outline: none; }
-svg.rmap .bl { font-family: var(--font-head); font-size: 11.5px; font-weight: 700; fill: var(--ink); pointer-events: none; }
-.legend { display: flex; flex-wrap: wrap; gap: 16px; font-family: var(--font-head); font-weight: 600; font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); }
-.legend i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; }
-
-/* 05 Prioritize */
-.prio { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 26px; }
-.ranking { display: flex; flex-direction: column; gap: 8px; }
-.rank { display: grid; grid-template-columns: 1.6rem minmax(0, 1fr) 3.2rem; gap: 10px; align-items: center; }
-.rank .n { font-family: var(--font-head); font-weight: 800; color: var(--muted); }
-.rank .bar { height: 26px; background: var(--surface-2); position: relative; overflow: hidden; }
-.rank .bar i { position: absolute; inset: 0 auto 0 0; transition: width .35s ease; }
-.rank .bar span { position: absolute; left: 8px; top: 50%; transform: translateY(-50%); font-family: var(--font-head); font-size: 0.76rem; font-weight: 700; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: calc(100% - 12px); }
-.rank .v { font-family: var(--font-head); text-align: right; font-weight: 800; color: var(--brand); }
-.rules { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
-.rule { border-top: 3px solid var(--brand); padding-top: 12px; display: flex; flex-direction: column; gap: 6px; }
-.rule b { font-family: var(--font-head); font-weight: 800; font-size: 0.86rem; text-transform: uppercase; }
-.rule span { font-size: 0.92rem; color: var(--muted); }
-
-/* 06 Roadmap */
-.phases { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border: 1px solid var(--line); }
-.phase { border: 0; border-right: 1px solid var(--line); background: var(--surface); text-align: left; padding: 18px; cursor: pointer; display: flex; flex-direction: column; gap: 4px; border-radius: 0; }
-.phase:last-child { border-right: 0; }
-.phase:hover { background: var(--surface-2); }
-.phase[aria-pressed="true"] { background: var(--brand); color: #ffffff; }
-.phase[aria-pressed="true"] span { color: var(--hero-muted); }
-.phase b { font-family: var(--font-head); font-size: 1.3rem; font-weight: 800; text-transform: uppercase; }
-.phase span { font-size: 0.9rem; color: var(--muted); }
-.lanes { display: flex; flex-direction: column; gap: 8px; }
-.lane { display: grid; grid-template-columns: 13rem minmax(0, 1fr); gap: 12px; align-items: center; font-size: 0.9rem; }
-.track { position: relative; height: 24px; background: var(--surface-2); }
-.track i { position: absolute; top: 3px; bottom: 3px; opacity: 0.92; }
-.track i.dim { opacity: 0.2; }
-.track b { position: absolute; top: -3px; width: 4px; height: 30px; background: var(--ink); }
-.years { display: grid; grid-template-columns: 13rem minmax(0, 1fr); gap: 12px; }
-.years div:last-child { display: flex; justify-content: space-between; font-family: var(--font-head); font-weight: 700; font-size: 0.7rem; color: var(--muted); }
-.phase-detail { font-size: 0.95rem; }
-.phase-detail b { font-family: var(--font-head); text-transform: uppercase; font-size: 0.86rem; color: var(--brand); }
-.phase-detail ul { margin: 6px 0 0; padding-left: 18px; color: var(--muted); display: flex; flex-direction: column; gap: 4px; }
-
-/* 07 KPIs */
-.north { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; }
-.ns { border-top: 4px solid var(--brand); }
-.ns b { font-family: var(--font-head); font-size: 1.05rem; font-weight: 800; text-transform: uppercase; display: block; margin-top: 6px; }
-.ns .targets { display: flex; gap: 24px; flex-wrap: wrap; margin-top: 10px; }
-.ns .targets div { font-size: 0.86rem; color: var(--muted); }
-.ns .targets strong { display: block; font-family: var(--font-head); font-weight: 800; font-size: 1.6rem; color: var(--brand); }
-.tablewrap { overflow-x: auto; }
-table { width: 100%; border-collapse: collapse; font-size: 0.92rem; min-width: 640px; }
-th { text-align: left; font-family: var(--font-head); font-size: 0.66rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink); padding: 8px 10px; border-bottom: 2px solid var(--brand); font-weight: 800; }
-td { padding: 11px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
-td b { font-family: var(--font-head); font-size: 0.86rem; }
-
-/* 08 References */
-.refbars { display: flex; flex-direction: column; gap: 12px; }
-.refbar { display: grid; grid-template-columns: 11rem minmax(0, 1fr) 4rem; gap: 12px; align-items: center; font-size: 0.9rem; }
-.refbar b { font-family: var(--font-head); font-size: 0.82rem; }
-.refbar small { display: block; color: var(--muted); font-size: 0.8rem; }
-.refbar .track2 { height: 24px; background: var(--surface-2); overflow: hidden; display: flex; }
-.refbar .track2 i { height: 100%; }
-.refbar .v { font-family: var(--font-head); text-align: right; font-weight: 800; color: var(--brand); }
-.reflegend { display: flex; gap: 16px; flex-wrap: wrap; font-family: var(--font-head); font-weight: 600; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); }
-.reflegend i { display: inline-block; width: 12px; height: 12px; margin-right: 6px; vertical-align: -1px; }
-.refcards .panel { display: flex; flex-direction: column; gap: 10px; border-top: 4px solid var(--brand); }
-.refcards ul { margin: 0; padding-left: 18px; font-size: 0.92rem; color: var(--muted); display: flex; flex-direction: column; gap: 3px; }
-.take { border-top: 1px solid var(--line); padding-top: 10px; font-size: 0.95rem; }
-.take b { display: block; font-family: var(--font-head); font-weight: 800; font-size: 0.66rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--brand); margin-bottom: 2px; }
-
-/* 09 Ask: closing indigo band */
-.ask { background: var(--brand); color: #ffffff; padding: 36px; display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 30px; }
-.ask h2 { color: #ffffff; }
-.ask ol { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 10px; color: var(--hero-muted); }
-.ask ol b { color: #ffffff; font-family: var(--font-head); font-size: 0.92rem; }
-.sign { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 18px; }
-.sign div { border-top: 1px solid var(--hero-line); padding-top: 8px; font-family: var(--font-head); font-weight: 700; font-size: 0.86rem; }
-.sign small { display: block; color: var(--hero-muted); font-weight: 600; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.06em; }
-.notes { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 22px; }
-.notes ul, .notes ol { margin: 0; padding-left: 18px; font-size: 0.92rem; color: var(--muted); display: flex; flex-direction: column; gap: 6px; }
-.notes li b { color: var(--ink); }
-footer { padding-block: 44px 60px; font-size: 0.86rem; color: var(--muted); border-top: 1px solid var(--line); margin-top: 56px; background: var(--surface); }
-
-/* Modal */
-.modal[hidden] { display: none !important; }
-.modal { position: fixed; inset: 0; z-index: 50; display: grid; place-items: center; background: rgba(23, 0, 99, 0.55); padding: max(16px, env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) max(16px, env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); }
-.sheet { background: var(--surface); color: var(--ink); max-width: 660px; width: 100%; max-height: 88vh; overflow: auto; padding: 28px; display: flex; flex-direction: column; gap: 14px; border-top: 6px solid var(--brand); box-shadow: 0 30px 80px rgba(0,0,0,0.3); }
-.sheet .top { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
-.sheet h3 { font-family: var(--font-head); font-size: 1.45rem; font-weight: 800; text-transform: uppercase; line-height: 1.12; }
-.sheet .amount { font-family: var(--font-head); font-size: 1.7rem; font-weight: 800; color: var(--brand); }
-.sheet dl { display: grid; grid-template-columns: 7.5rem minmax(0, 1fr); gap: 8px 14px; margin: 0; font-size: 0.97rem; }
-.sheet dt { color: var(--muted); font-family: var(--font-head); font-weight: 700; font-size: 0.66rem; text-transform: uppercase; letter-spacing: 0.05em; padding-top: 4px; }
-.sheet dd { margin: 0; }
-.sheet .nav2 { display: flex; justify-content: space-between; gap: 8px; border-top: 1px solid var(--line); padding-top: 14px; }
-.x { border: 1px solid var(--ink); background: var(--surface); width: 38px; height: 38px; cursor: pointer; font-size: 1.2rem; line-height: 1; }
-.x:hover { background: var(--brand); color: #fff; border-color: var(--brand); }
-.minibars { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
-.minibars div { font-family: var(--font-head); font-weight: 600; font-size: 0.68rem; color: var(--muted); }
-.minibars .m { height: 6px; background: var(--surface-2); margin-top: 5px; overflow: hidden; }
-.minibars .m i { display: block; height: 100%; background: var(--brand); }
-
-@media (max-width: 900px) {
-  .hero .inner, .story, .sim, .prio, .ask, .notes, .north { grid-template-columns: minmax(0, 1fr); }
-  .grid3, .bets, .stances { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
-  .rules { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
-  .orbit { max-width: 330px; }
-}
-@media (max-width: 600px) {
-  .grid3, .bets, .stances, .grid2, .bud-figs, .rules, .phases, .sign { grid-template-columns: minmax(0, 1fr); }
-  .phase { border-right: 0; border-bottom: 1px solid var(--line); }
-  .hero-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .chap-head { grid-template-columns: minmax(0, 1fr); }
-  .chap-num { width: 3rem; }
-  .lane, .years { grid-template-columns: minmax(0, 1fr); gap: 4px; }
-  .years div:first-child { display: none; }
-  .refbar { grid-template-columns: minmax(0, 1fr) 3.4rem; }
-  .refbar .track2 { grid-column: 1 / -1; grid-row: 2; }
-  .parked ul { columns: 1; }
-  .stackbar small { display: none; }
-  .brand span { display: none; }
-  .ask { padding: 24px; }
-  .sheet dl, .bet dl { grid-template-columns: minmax(0, 1fr); gap: 2px; }
-  .sheet dd, .bet dd { margin-bottom: 8px; }
-  .minibars { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-}
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  *, *::before { animation: none !important; transition: none !important; }
-}
+/* VOICE: a CEO decision brief, calm and exact, in the language of ie.edu.
+   IDEA: a board paper where money is released only as evidence arrives.
+   PICTURE: nested squares, €2M ceiling down to the €7,500 approved today.
+   COLOUR and TYPE: IE indigo #170063, corporate blue, sky; Montserrat heads, Source Serif body.
+   LAYOUT: white nav, indigo hero, grey page of square cards, indigo closing band. */
+:root{color-scheme:light;--bg:#f6f6f7;--card:#fff;--soft:#eceef3;--ink:#0f0f0f;--muted:#55576a;--line:#dcdde3;--brand:#170063;--corp:#0097dc;--sky:#86bafb;--good:#1b7a50;--bad:#b42318;--h1s:#e8e4f5;--h2s:#dcf0fa;--h3s:#e6f0fe;--head:"Montserrat","Helvetica Neue",Arial,sans-serif;--body:"Source Serif 4",Georgia,serif}
+*{box-sizing:border-box;min-width:0}
+html{scroll-behavior:smooth;scroll-padding-top:calc(72px + env(safe-area-inset-top,0px))}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 var(--body);overflow-x:clip;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+.in{max-width:1180px;margin:0 auto;padding:0 max(16px,env(safe-area-inset-left,0px)) 0 max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3,h4{margin:0;text-wrap:balance;font-family:var(--head)}
+h2{font-weight:800;text-transform:uppercase;font-size:clamp(1.6rem,3.3vw,2.45rem);line-height:1.05}
+h3{font-weight:700;font-size:1.02rem;line-height:1.3}
+p{margin:0}a{color:var(--brand);text-decoration-color:var(--sky);text-underline-offset:3px}
+.lede{color:var(--muted);max-width:68ch;font-size:1.06rem}
+.lab{font-family:var(--head);font-weight:700;font-size:.74rem;color:var(--muted)}
+.tag{font-family:var(--head);font-weight:700;font-size:.68rem;padding:3px 8px;border-radius:2px;white-space:nowrap;display:inline-block}
+.t1{background:var(--h1s);color:var(--brand)}.t2{background:var(--h2s);color:#00628f}.t3{background:var(--h3s);color:var(--brand)}
+.tg{background:#e3f4ea;color:var(--good)}.tr{background:#fdeceb;color:var(--bad)}.tm{background:var(--soft);color:var(--muted)}
+:focus-visible{outline:3px solid var(--corp);outline-offset:2px}
+button{font:inherit;color:inherit;cursor:pointer}
+.btn{font-family:var(--head);font-weight:700;font-size:.78rem;border:1px solid var(--ink);background:var(--card);padding:11px 16px;min-height:44px;border-radius:0}
+.btn[aria-pressed=true]{background:var(--brand);color:#fff;border-color:var(--brand)}
+.nav{position:sticky;top:0;z-index:20;background:var(--card);border-bottom:1px solid var(--line)}
+.nav .in{display:flex;align-items:center;gap:16px;height:64px}
+.brand{color:var(--brand);text-decoration:none;font-family:var(--head);font-weight:800;text-transform:uppercase;font-size:.86rem;line-height:1.15;white-space:nowrap}
+.brand span{display:block;color:var(--muted);font-weight:600;font-size:.68rem;text-transform:none}
+.links{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;flex:1;justify-content:flex-end}
+.links::-webkit-scrollbar{display:none}
+.links a{flex:none;color:var(--ink);text-decoration:none;font-family:var(--head);font-weight:700;font-size:.74rem;padding:10px;white-space:nowrap}
+.links a.on{color:var(--brand);box-shadow:inset 0 -2px 0 var(--brand)}
+.hero{background:var(--brand);color:#fff;padding:56px 0 64px}
+.hero .in{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:44px;align-items:center}
+.hero h1{font-weight:800;text-transform:uppercase;font-size:clamp(2.1rem,4.8vw,3.6rem);line-height:1.02;margin:12px 0 18px}
+.hero h1 i{font-style:normal;color:var(--sky)}
+.hero .lede{color:#cdc7ea}.hero .lab{color:#cdc7ea}
+.disc{margin-top:16px;font-family:var(--head);font-weight:600;font-size:.76rem;color:#cdc7ea;border-left:2px solid var(--sky);padding-left:10px}
+.ask{margin-top:24px;border:1px solid #3b2c86;padding:18px 20px;background:rgba(255,255,255,.04)}
+.ask ul{margin:8px 0 0;padding-left:20px;display:grid;gap:4px}
+.ask li.no{color:#cdc7ea}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
+.cta a{text-decoration:none;font-family:var(--head);font-weight:700;font-size:.78rem;padding:14px 20px;min-height:44px}
+.cta .p{background:#fff;color:var(--ink)}.cta .g{border:1px solid #fff;color:#fff}
+.nest{width:100%;max-width:440px;display:block;margin:0 auto}
+.nest text{font-family:var(--head);font-weight:700;fill:#fff}
+.nest .big{font-size:26px;font-weight:800}.nest .sm{font-size:12.5px;font-weight:600;fill:#cdc7ea}
+@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.nest g{animation:rise .7s ease both}.nest g:nth-of-type(2){animation-delay:.15s}.nest g:nth-of-type(3){animation-delay:.3s}.nest g:nth-of-type(4){animation-delay:.45s}
+.ch{padding:72px 0 8px}
+.ch>.in{display:flex;flex-direction:column;gap:24px}
+.head{display:grid;grid-template-columns:4.2rem minmax(0,1fr);gap:4px 18px}
+.num{font-family:var(--head);font-weight:800;font-size:1.05rem;color:var(--brand);border-top:3px solid var(--brand);padding-top:8px}
+.head .t{display:flex;flex-direction:column;gap:12px}
+.card{background:var(--card);border:1px solid var(--line);padding:22px}
+.g2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.g3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.card ul{margin:8px 0 0;padding-left:18px;display:grid;gap:4px;font-size:.95rem}
+.small{font-size:.9rem;color:var(--muted)}
+/* question explorer */
+.qa{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.3fr);gap:0;border:1px solid var(--line);background:var(--card)}
+.qlist{display:flex;flex-direction:column;border-right:1px solid var(--line)}
+.qlist button{text-align:left;border:0;border-bottom:1px solid var(--line);background:var(--card);padding:14px 18px;font-family:var(--head);font-weight:600;font-size:.9rem;min-height:48px}
+.qlist button[aria-pressed=true]{background:var(--brand);color:#fff}
+.ans{padding:26px;display:flex;flex-direction:column;gap:14px}
+.ans .short{font-family:var(--body);font-size:1.3rem;line-height:1.4}
+.ans a.go{font-family:var(--head);font-weight:700;font-size:.8rem}
+/* matrix */
+.mx{display:grid;grid-template-columns:auto minmax(0,1fr) minmax(0,1fr);gap:10px;align-items:stretch}
+.ax{font-family:var(--head);font-weight:700;font-size:.74rem;color:var(--muted);display:flex;align-items:center;justify-content:center;text-align:center}
+.ax.v{writing-mode:vertical-rl;transform:rotate(180deg)}
+.sc{text-align:left;border:1px solid var(--line);background:var(--card);padding:16px;display:flex;flex-direction:column;gap:6px;min-height:150px;border-radius:0}
+.sc b{font-family:var(--head);font-size:1rem}.sc span{font-size:.9rem;color:var(--muted)}
+.sc.plan{background:var(--h3s)}.sc[aria-pressed=true]{box-shadow:inset 0 0 0 3px var(--brand)}
+table{border-collapse:collapse;width:100%;font-size:.92rem}
+th,td{padding:10px 8px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{font-family:var(--head);font-size:.74rem;color:var(--muted)}
+td.n,th.n{text-align:right;font-family:var(--head);font-variant-numeric:tabular-nums;white-space:nowrap}
+tr.hl td{background:var(--h3s)}
+.dot{font-family:var(--head);font-weight:800}.d2{color:var(--good)}.d1{color:var(--corp)}.d0{color:#b8b9c4}
+.scroll{overflow-x:auto}
+/* budget */
+.bar{display:flex;height:64px;border:1px solid var(--line)}
+.bar div{display:flex;flex-direction:column;justify-content:center;padding:0 10px;font-family:var(--head);font-weight:700;font-size:.8rem;transition:flex-grow .5s;overflow:hidden;white-space:nowrap}
+.b1{background:var(--brand);color:#fff}.b2{background:var(--corp);color:#fff}.b3{background:var(--sky);color:var(--brand)}
+.seg{display:flex;flex-wrap:wrap;gap:8px}
+.ini{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 14px;padding:14px 0;border-bottom:1px solid var(--line)}
+.ini b{font-family:var(--head);font-size:.95rem}.ini .n{font-family:var(--head);font-weight:800;white-space:nowrap}
+.ini p{grid-column:1/-1;font-size:.92rem;color:var(--muted)}
+/* stages */
+.stages{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border:1px solid var(--line);background:var(--card)}
+.st{padding:18px;border-right:1px solid var(--line);display:flex;flex-direction:column;gap:8px}
+.st:last-child{border-right:0}
+.st .amt{font-family:var(--head);font-weight:800;font-size:1.5rem;color:var(--brand)}
+.st .pass{font-size:.88rem;color:var(--good)}.st .stop{font-size:.88rem;color:var(--bad)}
+.calc{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px;align-items:center}
+.sl{display:grid;gap:4px;margin-bottom:12px}
+.sl label{font-family:var(--head);font-weight:700;font-size:.8rem;display:flex;justify-content:space-between}
+input[type=range]{width:100%;height:32px;accent-color:var(--brand)}
+.res{text-align:center}.res b{display:block;font-family:var(--head);font-weight:800;font-size:clamp(2.4rem,6vw,3.6rem);color:var(--brand);line-height:1}
+.chk{list-style:none;padding:0!important}.chk li::before{content:"✓ ";color:var(--good);font-weight:700}
+.x li::before{content:"✕ ";color:var(--bad)}
+.close{background:var(--brand);color:#fff;padding:64px 0;margin-top:72px}
+.close h2{color:#fff}.close .lede{color:#cdc7ea}
+.chain{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin-top:22px}
+.chain div{border-top:3px solid var(--sky);padding-top:10px;font-size:.95rem}
+.chain b{display:block;font-family:var(--head);font-size:.82rem;color:var(--sky);margin-bottom:4px}
+.src{font-size:.85rem;color:var(--muted);padding:32px 0 48px}.src ul{padding-left:18px;columns:2;gap:28px}
+@media(max-width:900px){.hero .in,.qa,.calc,.g3{grid-template-columns:minmax(0,1fr)}.qlist{border-right:0;border-bottom:1px solid var(--line)}.stages{grid-template-columns:repeat(2,minmax(0,1fr))}.chain{grid-template-columns:repeat(2,minmax(0,1fr))}.st:nth-child(2){border-right:0}}
+@media(max-width:600px){.g2,.stages,.chain{grid-template-columns:minmax(0,1fr)}.st{border-right:0;border-bottom:1px solid var(--line)}.head{grid-template-columns:minmax(0,1fr)}.num{width:3rem}.src ul{columns:1}.bar div span{display:none}table{font-size:13px}.mx{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.ax.v,.ax.blank{display:none}.ax.top{display:none}}
 </style>
 </head>
 <body>
+<nav class="nav"><div class="in">
+<a class="brand" href="#top">IE University 2035<span>Team A · Corporate Entrepreneurship</span></a>
+<div class="links" id="links">
+<a href="#questions">Your questions</a><a href="#future">Future</a><a href="#portfolio">Portfolio</a><a href="#experiment">Experiment</a><a href="#partner">Partner</a><a href="#culture">Culture</a><a href="#decision">Decision</a>
+</div></div></nav>
 
+<header class="hero" id="top"><div class="in">
+<div>
+<p class="lab">Recommendation to the CEO of IE University</p>
+<h1>Protect the premium. <i>Test the unbundled future.</i></h1>
+<p class="lede">AI makes learning more accessible, and employers and platforms increasingly build and recognize skills outside universities. Yet premium degrees may keep their value as signals of selection, judgment, networks and career access. IE should bet neither on the death nor on the permanence of degrees.</p>
+<div class="ask">
+<p class="lab">What we ask you to decide today</p>
+<ul>
+<li>Approve a <b>conditional €2M, 12-month</b> innovation portfolio ceiling.</li>
+<li>Release <b>€7,500</b> for a 4-week discovery; appoint an academic sponsor and a venture lead.</li>
+<li>Allow a <b>€52,500</b> pilot only if an employer pays first.</li>
+<li class="no">Not today: a credentialing platform, or the full €300,000 H3 envelope.</li>
+</ul>
+</div>
+<div class="cta"><a class="p" href="#questions">Explore your questions</a><a class="g" href="#decision">Go to the decision</a></div>
+<p class="disc">Course exercise by IE Executive MBA students, not a plan approved by IE. All financial figures and customer responses are illustrative assumptions.</p>
+</div>
+<svg class="nest" viewBox="0 0 440 440" role="img" aria-label="Nested squares: €2M ceiling, €300k H3 envelope, €60k maximum at risk in 2027, €7,500 approved today">
+<g><rect x="0" y="0" width="440" height="440" fill="#2a1580" stroke="#3b2c86"/><text class="big" x="22" y="44">€2M</text><text class="sm" x="22" y="66">Portfolio ceiling, 12 months</text></g>
+<g><rect x="210" y="210" width="230" height="230" fill="#0097dc"/><text class="big" x="228" y="250">€300k</text><text class="sm" x="228" y="270" style="fill:#e6f5fc">H3 option, staged</text></g>
+<g><rect x="337" y="337" width="103" height="103" fill="#86bafb"/><text x="347" y="366" style="fill:#170063;font-size:17px;font-weight:800">€60k</text><text x="347" y="383" style="fill:#170063;font-size:10.5px">max at risk 2027</text></g>
+<g><rect x="402" y="402" width="38" height="38" fill="#fff"/></g>
+<text class="sm" x="22" y="110" style="fill:#fff;font-size:13px">The white square is today's ask: €7,500.</text>
+<text class="sm" x="22" y="128">Each larger square opens only with evidence.</text>
+</svg>
+</div></header>
 
-<nav class="nav gut" aria-label="Sections">
-  <div class="inner">
-    <a class="brand" href="#top">Innovation Portfolio<span>IE University · 2027 → 2035 · Team A</span></a>
-    <div class="navlinks" id="navlinks">
-      <a href="#future">Future</a><a href="#budget">Budget</a><a href="#bets">Nine bets</a><a href="#map">Risk map</a><a href="#prioritize">Prioritize</a><a href="#roadmap">Roadmap</a><a href="#kpis">KPIs</a><a href="#references">References</a><a href="#ask">The ask</a>
-    </div>
-  </div>
-</nav>
+<section class="ch" id="questions"><div class="in">
+<div class="head"><p class="num">Q</p><div class="t"><h2>The questions you will ask</h2><p class="lede">Pick a question. Each answer is short and points to the evidence further down the page.</p></div></div>
+<div class="qa"><div class="qlist" id="qlist"></div><div class="ans" id="ans" aria-live="polite"></div></div>
+</div></section>
 
-<header class="hero gut" id="top">
-  <div class="inner">
-    <div>
-      <span class="eyebrow">Recommendation to the President of IE University · Corporate Entrepreneurship · Milestone 2</span>
-      <h1>Learning for life.<br><i>Proven in practice.</i></h1>
-      <p class="lede">A €17.5M-a-year innovation portfolio that prepares IE for 2035, when AI makes knowledge almost free and employers pay for proof of what people can do.</p>
-      <p class="disclaimer">Student project by Team A, IE Executive MBA. Not an official IE University page.</p>
-      <div class="hero-stats">
-        <div><b>€17.5M</b><span>a year, 5% of revenue</span></div>
-        <div><b>9</b><span>bets across H1, H2, H3</span></div>
-        <div><b>€8M</b><span>for new customers and models</span></div>
-        <div><b>2035</b><span>scenario horizon</span></div>
-      </div>
-      <div class="hero-cta"><a class="primary" href="#bets">Explore the nine bets</a><a class="ghost" href="#budget">Stress-test the budget</a></div>
-    </div>
-    <div>
-      <svg class="orbit" viewBox="0 0 460 460" role="img" aria-label="Budget as three horizons: H1 €9.5M at the core, H2 €5.25M, H3 €2.75M at the edge">
-        <g>
-          <circle class="ring" cx="230" cy="230" r="215" fill="none" stroke="var(--sky)" stroke-width="22"></circle>
-          <circle class="ring" cx="230" cy="230" r="170" fill="none" stroke="var(--corp)" stroke-width="40"></circle>
-          <circle class="ring" cx="230" cy="230" r="112" fill="#ffffff"></circle>
-        </g>
-        <text class="core-label" x="230" y="228" text-anchor="middle" style="fill: var(--brand)">€9.5M</text>
-        <text x="230" y="248" text-anchor="middle" style="fill: var(--brand)">H1 · CORE</text>
-        <text x="230" y="76" text-anchor="middle" style="fill: #ffffff">H2 · ADJACENT · €5.25M</text>
-        <text x="230" y="20" text-anchor="middle" style="fill: #ffffff">H3 · NEW · €2.75M</text>
-      </svg>
-      <div class="challenge-card">
-        <span class="eyebrow">The challenge (M1)</span>
-        <p>How might IE University become the most trusted platform for developing, proving and renewing professional capabilities by 2035, so that learners and employers choose IE for measurable career outcomes, not merely for a degree?</p>
-      </div>
-    </div>
-  </div>
-</header>
+<section class="ch" id="future"><div class="in">
+<div class="head"><p class="num">M1</p><div class="t"><h2>The future: plan for a split market</h2><p class="lede">Two uncertainties shape 2035: who controls professional learning, and what the labour market trusts. We plan against scenario 3 but design a portfolio that survives all four. Click a scenario to see how each initiative holds up.</p></div></div>
+<div class="g2">
+<div class="mx" id="mx">
+<span class="ax blank"></span><span class="ax top">Universities control learning</span><span class="ax top">Learning spreads beyond universities</span>
+<span class="ax v">Degrees stay the trusted signal</span><span id="s1"></span><span id="s3"></span>
+<span class="ax v">Demonstrated capability is the signal</span><span id="s2"></span><span id="s4"></span>
+</div>
+<div class="card"><h3 id="scT"></h3><p class="small" id="scD" style="margin-top:6px"></p>
+<div class="scroll" style="margin-top:12px"><table><thead><tr><th>Initiative</th><th class="n">Value in this future</th></tr></thead><tbody id="rob"></tbody></table></div>
+<p class="small" style="margin-top:10px">Ratings are the team's judgment, not data. ●● strong, ● some, ○ little.</p></div>
+</div>
+<div class="g3">
+<div class="card"><h3>What we know</h3><ul>
+<li>WEF 2025: employers expect 39% of workers' core skills to change by 2030.</li>
+<li>OECD 2026: skills-first hiring is growing, but degrees and experience still both matter.</li>
+<li>Firms that dropped degree requirements changed fewer than 1 in 700 hires (Harvard and Burning Glass).</li></ul></div>
+<div class="card"><h3>What IE already has</h3><ul>
+<li>ChatGPT Edu across the academic ecosystem since February 2025.</li>
+<li>IEU Labs real projects; Headspring corporate academies.</li>
+<li>Alumni lifelong learning, certificates and micro-credentials.</li></ul>
+<p class="small" style="margin-top:8px">So "another AI tutor" is not a new strategy for IE.</p></div>
+<div class="card"><h3>Signals we watch</h3><ul>
+<li>Employer hiring practices: are degree requirements really dropping?</li>
+<li>Adoption of independently assessed credentials.</li>
+<li>Demand for premium programs.</li>
+<li>Corporate learning spend.</li></ul></div>
+</div>
+<div class="card" style="background:var(--h3s)"><p class="lab">Strategic challenge</p><p style="font-size:1.2rem;margin-top:6px">How might IE defend the distinctive value of premium education while selectively capturing growth in a world where learning and recognition become more distributed?</p></div>
+</div></section>
 
-<main>
-<section class="chapter gut" id="future" aria-labelledby="future-h">
-  <div class="inner">
-    <div class="chap-head"><span class="chap-num">01</span><div class="text"><span class="eyebrow">The 2035 future</span><h2 id="future-h">Three drivers decide where IE must win</h2><p class="lede">For each starred driver we imagined two futures and checked today's signals. Toggle the futures; the green tag marks the one our scenario uses.</p></div></div>
-    <div class="grid3" id="drivers"></div>
-    <div class="panel story">
-      <div>
-        <span class="eyebrow">Our scenario · Learning for Life, Proven in Practice</span>
-        <blockquote style="margin-top:10px">The year is 2035. Every learner has a cheap, highly personal AI tutor, so passing on knowledge is no longer a university's edge. Employers look for proof of applied judgment, teamwork and the ability to work with AI, and some first career steps have become less predictable. Students choose schools that offer credible assessment, real company projects, human networks and access to employers. Professionals come back for targeted learning throughout their careers.</blockquote>
-      </div>
-      <div class="ot">
-        <div class="opp"><h4>Opportunities for IE</h4><ul><li>Distinctive employer partnerships</li><li>Verified portfolios and assessments</li><li>Premium peer networks</li><li>Lifelong alumni relationships and corporate reskilling</li></ul></div>
-        <div class="thr" style="margin-top:14px"><h4>Threats to IE</h4><ul><li>Teaching content becomes a commodity</li><li>Pressure on premium tuition</li><li>A weaker first-job promise</li><li>New certifiers and corporate academies</li></ul></div>
-      </div>
-    </div>
-    <div>
-      <p class="eyebrow" style="margin-bottom:10px">How should IE play? Pick a stance to see what it costs (it also updates the budget below)</p>
-      <div class="stances" id="stances"></div>
-    </div>
-  </div>
-</section>
+<section class="ch" id="portfolio"><div class="in">
+<div class="head"><p class="num">M2</p><div class="t"><h2>The portfolio: €2M, governed three ways</h2><p class="lede">Five initiatives, each something new for IE. Compare our split with the classic 70/20/10 to see what changes.</p></div></div>
+<div class="card">
+<div class="seg" id="presets"></div>
+<div class="bar" id="bar" style="margin-top:16px"></div>
+<p class="small" id="barNote" style="margin-top:10px"></p>
+</div>
+<div class="g3" id="hz"></div>
+<div class="g2">
+<div class="card"><h3>How we run it</h3><ul>
+<li><b>H1, Enabler:</b> academic schools own the redesign, with dedicated support.</li>
+<li><b>H2 and H3, Producer features:</b> a small venture team with a named owner and a protected exploratory budget.</li>
+<li><b>Innovation Growth Board</b> (academic, finance, commercial, legal) decides at every gate: discover, pilot, then scale, pivot or stop.</li></ul></div>
+<div class="card"><h3>Different success measures per horizon</h3>
+<table><tbody><tr><td><span class="tag t1">H1</span></td><td>Educational quality and operating efficiency</td></tr><tr><td><span class="tag t2">H2</span></td><td>New customer value and economics</td></tr><tr><td><span class="tag t3">H3</span></td><td>Demand, method credibility and brand safety first, not revenue targets</td></tr></tbody></table>
+<p class="small" style="margin-top:10px">Every idea passed five filters: relevance across futures; value beyond what IE already offers; a credible buyer who pays; IE assets and feasibility; brand, academic and regulatory risk.</p></div>
+</div>
+<div class="card"><h3>Reference points</h3><div class="scroll"><table><thead><tr><th>Peer</th><th class="n">Innovation or tech spend</th><th>What we take</th></tr></thead><tbody>
+<tr><td>Harvard Business School</td><td class="n">$172M research + $137M IT</td><td>Keep new ventures (Online, Foundry) outside the core.</td></tr>
+<tr><td>IESE</td><td class="n">about 2.4% of revenue</td><td>No separate innovation budget at our closest peer.</td></tr>
+<tr><td>Coursera</td><td class="n">about 16% of revenue</td><td>We cannot outspend AI-native rivals, so we partner for technology.</td></tr>
+<tr class="hl"><td><b>IE (our proposal)</b></td><td class="n">about 0.6% of revenue</td><td>€2M against the team's €350M revenue estimate; IE does not publish revenue.</td></tr>
+</tbody></table></div></div>
+</div></section>
 
-<section class="chapter gut" id="budget" aria-labelledby="budget-h">
-  <div class="inner">
-    <div class="chap-head"><span class="chap-num">02</span><div class="text"><span class="eyebrow">Innovation budget</span><h2 id="budget-h">€17.5M a year, ring-fenced from academic R&amp;D</h2><p class="lede">IE does not publish revenue or an innovation budget, so we estimate both. Move the sliders to see how the envelope and every bet change if our estimates are wrong.</p></div></div>
-    <div class="bud-figs">
-      <div class="panel fig"><span class="eyebrow">Revenue <span class="est">estimate</span></span><b class="mono" id="f-rev">€350M</b><small>From 10,000+ students, tuition and executive education. IE does not publish it; last filed figure €121.8M for one entity (2020/21).</small></div>
-      <div class="panel fig"><span class="eyebrow">Academic R&amp;D <span class="est">estimate</span></span><b class="mono">€50M</b><small>16.7% of total spending (IE and PwC, 2025): faculty research, centres, EU projects. Kept outside the innovation budget.</small></div>
-      <div class="panel fig main"><span class="eyebrow">Innovation budget</span><b class="mono" id="f-inno">€17.5M</b><small id="f-inno-note">5% of revenue. New money for new value, not research.</small></div>
-    </div>
-    <div class="panel sim">
-      <div style="display:flex;flex-direction:column;gap:18px">
-        <div class="ctrl"><label for="s-rev">Revenue estimate <output id="o-rev">€350M</output></label><input type="range" id="s-rev" min="250" max="450" step="10" value="350"></div>
-        <div class="ctrl"><label for="s-int">Innovation intensity <output id="o-int">5.0%</output></label><input type="range" id="s-int" min="2" max="8" step="0.5" value="5"></div>
-        <div class="ctrl"><span style="font-size:0.88rem;font-weight:600">Split across horizons</span><div class="presets" id="presets"></div></div>
-        <button class="btn" id="reset-sim" style="align-self:flex-start">Back to our proposal</button>
-      </div>
-      <div class="sim-out">
-        <div class="sim-total"><b id="o-total">€17.5M</b><span id="o-total-note">a year · our proposal</span></div>
-        <div class="stackbar" id="stackbar"></div>
-        <div class="waffle" id="waffle" aria-hidden="true"></div>
-        <p class="waffle-note" id="waffle-note">Each square is €0.25M.</p>
-        <p class="diff" id="diff"></p>
-      </div>
-    </div>
-  </div>
-</section>
+<section class="ch" id="experiment"><div class="in">
+<div class="head"><p class="num">M3</p><div class="t"><h2>One experiment: IE Open Credentials</h2><p class="lede">The sharpest question in the portfolio: will an employer pay IE to assess capability its people built outside IE? We test it with money, in stages, each with a stop rule.</p></div></div>
+<div class="g3">
+<div class="card"><p class="lab">First buyer</p><h3 style="margin-top:4px">Head of L&amp;D or Talent in a large employer</h3><p class="small" style="margin-top:6px">Already training middle managers in AI and business problem-solving. Needs to know who is ready for development opportunities or complex assignments. A hypothesis, not validated research.</p></div>
+<div class="card"><p class="lab">The product</p><h3 style="margin-top:4px">Applied AI &amp; Business Judgment assessment</h3><p class="small" style="margin-top:6px">2 or 3 realistic business cases, uncertain evidence, AI allowed under stated conditions, a recommendation defended to qualified human assessors using IE rubrics.</p></div>
+<div class="card"><p class="lab">The output</p><h3 style="margin-top:4px">An evidence report per person</h3><p class="small" style="margin-top:6px">Not a diploma, not alumni status, not ECTS credits, not an implied MBA substitute. Formal credentials need later academic and legal approval.</p></div>
+</div>
+<div class="stages" id="stages"></div>
+<div class="g2">
+<div class="card"><h3>Illustrative 3-year economics, not a forecast</h3><div class="scroll"><table><thead><tr><th>Year</th><th class="n">Employers</th><th class="n">Assessments</th><th class="n">Price</th><th class="n">Revenue</th><th class="n">Contribution</th></tr></thead><tbody>
+<tr><td>2027 pilot</td><td class="n">1</td><td class="n">30</td><td class="n">€750</td><td class="n">€22,500</td><td class="n" style="color:var(--bad)">−€37,500</td></tr>
+<tr><td>2028</td><td class="n">5</td><td class="n">500</td><td class="n">€600</td><td class="n">€300,000</td><td class="n">€40,000</td></tr>
+<tr><td>2029</td><td class="n">12</td><td class="n">1,440</td><td class="n">€550</td><td class="n">€792,000</td><td class="n">€172,800</td></tr>
+</tbody></table></div><p class="small" style="margin-top:10px">2028 and 2029 are conditional. Excludes IE central overhead and long-term validation research.</p></div>
+<div class="card"><h3>What would it take to break even?</h3>
+<div class="calc">
+<div>
+<div class="sl"><label for="pr">Price per assessment <span id="prV"></span></label><input id="pr" type="range" min="300" max="900" step="25" value="600"></div>
+<div class="sl"><label for="vc">Variable cost <span id="vcV"></span></label><input id="vc" type="range" min="100" max="400" step="10" value="200"></div>
+<div class="sl"><label for="fc">Fixed costs per year <span id="fcV"></span></label><input id="fc" type="range" min="80000" max="300000" step="10000" value="160000"></div>
+</div>
+<div class="res"><b id="be"></b><p class="small" id="beN"></p><button class="btn" id="reset" style="margin-top:10px">Reset to our 2028 case</button></div>
+</div></div>
+</div>
+<div class="card" style="border-color:var(--bad)"><h3>Brand guardrail</h3><p class="small" style="margin-top:6px">The pilot report is never marketed as a degree-equivalent IE qualification: no alumni rights, no ECTS credits, no implied MBA substitute. We monitor reputation and cannibalization risk. Regulatory feasibility of later formal credentials is an open condition.</p></div>
+</div></section>
 
-<section class="chapter gut" id="bets" aria-labelledby="bets-h">
-  <div class="inner">
-    <div class="chap-head"><span class="chap-num">03</span><div class="text"><span class="eyebrow">Nine bets</span><h2 id="bets-h">Three bets per horizon, each tied to the scenario</h2><p class="lede">Budgets follow the simulator above. Open a card for the owner, the first gate and what unlocks more money, or open the full brief.</p></div></div>
-    <div class="toolbar">
-      <div class="left" id="filters"></div>
-      <div class="right"><label for="sort" class="eyebrow">Sort</label><select id="sort"><option value="horizon">By horizon</option><option value="budget">Budget, high to low</option><option value="score">Priority score</option></select></div>
-    </div>
-    <div class="bets" id="betgrid"></div>
-    <div class="panel parked"><b style="color:var(--ink)">Parked ideas</b> (from our brainstorm, not funded in 2027)<ul><li>Faculty AI fellowship (H1)</li><li>AI career coach (H1)</li><li>Public career-outcomes dashboard (H1)</li><li>Mid-career transition bootcamps (H2)</li><li>Hybrid programs for Gulf and Asian markets (H2)</li><li>AI-era readiness for high-school students (H2)</li><li>Licensing IE's AI tutors to other universities (H3)</li><li>IE-verified talent pool for employers (H3)</li><li>Human-plus-AI executive coaching subscription (H3)</li></ul></div>
-  </div>
-</section>
+<section class="ch" id="partner"><div class="in">
+<div class="head"><p class="num">M4</p><div class="t"><h2>The partner: buy execution, not trust</h2><p class="lede">IE can design the standard but lacks an auditable workflow to run external assessments. We use a specialist for operations and keep standards, decisions and brand inside IE.</p></div></div>
+<div class="g2">
+<div class="card"><h3>Build, partner, buy or invest?</h3><table><tbody>
+<tr><td><b>Partner</b> <span class="tag tg">our choice</span></td><td>Working tools now; the standard stays ours.</td></tr>
+<tr><td>Build</td><td>Slow and costly for a test that may stop after €7,500.</td></tr>
+<tr><td>Buy</td><td>Out of proportion for an unvalidated need.</td></tr>
+<tr><td>Invest</td><td>A stake gives learning, not a working tool for the pilot.</td></tr></tbody></table></div>
+<div class="card"><h3>The deal</h3><p style="margin-top:6px">A paid venture-client pilot with <b>Vervoe</b>, provisional on technical and legal diligence. Up to <b>€25,000</b>, inside the M3 pilot's €52,500 and only after an employer has paid. Not an acquisition, not equity.</p><ul class="chk">
+<li>IE owns the framework, rubrics, decisions and learner experience</li><li>Partner delivers tests, analytics and an audit trail</li><li>If diligence fails, we test the runner-up</li></ul></div>
+</div>
+<div class="card"><div class="scroll"><table><thead><tr><th>Candidate</th><th>Why shortlisted</th><th>Critical limitation to test</th></tr></thead><tbody>
+<tr class="hl"><td><b>Vervoe</b></td><td>Configurable work-sample assessments in varied formats, AI-assisted grading; API lets others certify under their own brand.</td><td>Can IE keep full rubric control and the human final decision, with auditable results and acceptable data terms?</td></tr>
+<tr><td>TestGorilla</td><td>Existing test delivery and custom questions.</td><td>Built for selection tests; verify multi-stage academic judgment exercises.</td></tr>
+<tr><td>Workera</td><td>Enterprise skills assessment and workforce measurement.</td><td>Verify fit and economics for small, qualitative management simulations.</td></tr>
+</tbody></table></div></div>
+<div class="card"><h3>Scale gate: all must be true</h3><ul class="chk" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:6px 24px"><li>Works with IE rubrics</li><li>Permits human review</li><li>Meets privacy obligations</li><li>Delivers usable reports</li><li>Meets agreed reliability standards</li><li>No unacceptable lock-in</li></ul><p class="small" style="margin-top:8px">The partner cannot prove employers value the report. M3's buyer-use test does.</p></div>
+</div></section>
 
-<section class="chapter gut" id="map" aria-labelledby="map-h">
-  <div class="inner">
-    <div class="chap-head"><span class="chap-num">04</span><div class="text"><span class="eyebrow">Risk map</span><h2 id="map-h">Big, safe bets near the core; small, risky ones at the edge</h2><p class="lede">Uncertainty against time to first evidence. Bubble area is the budget. Click a bubble to open the brief.</p></div></div>
-    <div class="panel">
-      <div class="mapwrap"><svg class="rmap" id="rmap" viewBox="0 0 720 440" role="img" aria-label="Risk map of the nine bets"></svg></div>
-      <div class="legend" style="margin-top:10px"><span><i style="background:var(--h1)"></i>H1 · Core</span><span><i style="background:var(--h2)"></i>H2 · Adjacent</span><span><i style="background:var(--h3)"></i>H3 · New</span></div>
-    </div>
-  </div>
-</section>
+<section class="ch" id="culture"><div class="in">
+<div class="head"><p class="num">M5</p><div class="t"><h2>The culture: entrepreneurial speed with academic rigor</h2><p class="lede">A new business needs fast, falsifiable commercial tests. A university cannot compromise assessment integrity, academic authority, student fairness or its premium brand. Both must hold.</p></div></div>
+<div class="g2">
+<div class="card"><p class="lab">What we observe</p><p style="margin-top:6px">Established approval and academic-quality processes for formal education; public AI experimentation and corporate collaboration.</p></div>
+<div class="card"><p class="lab">What we assume, not observe</p><p style="margin-top:6px">That approval cycles, faculty incentives or department boundaries would slow this venture. We do not call IE bureaucratic without internal evidence; staff interviews should confirm or reject it.</p></div>
+</div>
+<div class="card"><div class="seg" id="grp"></div><div style="margin-top:16px" id="grpOut"></div></div>
+<div class="card" style="background:var(--h3s)"><p style="font-size:1.2rem">Test commercial assumptions quickly; never shortcut academic standards. Reward useful learning and responsible stopping, not only launches or certificates issued.</p></div>
+</div></section>
 
-<section class="chapter gut" id="prioritize" aria-labelledby="prio-h">
-  <div class="inner">
-    <div class="chap-head"><span class="chap-num">05</span><div class="text"><span class="eyebrow">Prioritize and fund</span><h2 id="prio-h">Score every bet the same way, then fund in tranches</h2><p class="lede">Each bet is scored 1 to 5 on four criteria (team judgment). Change the weights to see how the ranking moves.</p></div></div>
-    <div class="panel prio">
-      <div style="display:flex;flex-direction:column;gap:16px" id="weights"></div>
-      <div class="ranking" id="ranking"></div>
-    </div>
-    <div class="rules">
-      <div class="rule"><b>Tranches, not annual blank cheques</b><span>H2 and H3 money is released in stages, each after a named milestone.</span></div>
-      <div class="rule"><b>Kill rule</b><span>A bet that misses two of its three gate KPIs stops, and its money returns to the pool.</span></div>
-      <div class="rule"><b>Outside the core P&amp;L</b><span>H3 bets report to an innovation board, not to program budgets that they may cannibalise.</span></div>
-      <div class="rule"><b>Quarterly review</b><span>The President, the Provost and the CFO review the portfolio every quarter and re-rank it.</span></div>
-    </div>
-  </div>
-</section>
+<section class="close" id="decision"><div class="in">
+<h2>Five connected decisions</h2>
+<p class="lede" style="margin-top:12px">Each milestone answers one question and sets up the next.</p>
+<div class="chain">
+<div><b>M1 Future</b>AI may decentralize learning, but premium degrees may stay valuable. Plan for both.</div>
+<div><b>M2 Portfolio</b>Strengthen premium programs, build employer and lifelong relationships, keep a small H3 option.</div>
+<div><b>M3 Experiment</b>Will an employer pay for an IE assessment of capability built outside IE? Start narrow.</div>
+<div><b>M4 Partner</b>A specialist runs assessment operations; standards and academic trust stay inside IE.</div>
+<div><b>M5 Culture</b>Fast, reversible experiments with rigorous academic oversight and clear decision rights.</div>
+</div>
+<div class="g2" style="margin-top:28px">
+<div class="ask" style="margin-top:0"><p class="lab">Approve</p><ul class="chk"><li>Conditional €2M, 12-month portfolio ceiling</li><li>€7,500 discovery, 4 weeks</li><li>An academic sponsor and a venture lead</li><li>A €52,500 pilot, released only after paid demand</li><li>Innovation Growth Board with gate decisions</li></ul></div>
+<div class="ask" style="margin-top:0"><p class="lab">Do not approve yet</p><ul class="x"><li>A credentialing platform</li><li>The full €300,000 H3 envelope upfront</li><li>Any degree-equivalent claim, ECTS or alumni rights for pilot reports</li></ul></div>
+</div>
+</div></section>
 
-<section class="chapter gut" id="roadmap" aria-labelledby="road-h">
-  <div class="inner">
-    <div class="chap-head"><span class="chap-num">06</span><div class="text"><span class="eyebrow">Roadmap 2027 → 2035</span><h2 id="road-h">Prove, expand, scale</h2><p class="lede">Click a phase to highlight what runs in it. Black marks show each bet's first gate.</p></div></div>
-    <div class="phases" id="phases"></div>
-    <div class="panel" style="display:flex;flex-direction:column;gap:14px">
-      <div class="years"><div></div><div><span>2027</span><span>2029</span><span>2031</span><span>2033</span><span>2035</span></div></div>
-      <div class="lanes" id="lanes"></div>
-      <div class="phase-detail" id="phase-detail"></div>
-    </div>
-  </div>
-</section>
-
-<section class="chapter gut" id="kpis" aria-labelledby="kpi-h">
-  <div class="inner">
-    <div class="chap-head"><span class="chap-num">07</span><div class="text"><span class="eyebrow">What the President watches</span><h2 id="kpi-h">Two north-star numbers and one gate per bet</h2><p class="lede">Targets are our proposal, to be validated with IE data in the first year.</p></div></div>
-    <div class="north">
-      <div class="panel ns"><span class="eyebrow">North star 1 · Proof</span><b>Graduates who leave with a verified skills portfolio</b><div class="targets"><div><strong>30%</strong>by 2028</div><div><strong>100%</strong>by 2030</div></div></div>
-      <div class="panel ns"><span class="eyebrow">North star 2 · Renewal</span><b>Revenue from employers and alumni through the new bets</b><div class="targets"><div><strong>€10M</strong>a year by 2030</div><div><strong>€35M</strong>a year by 2035</div></div></div>
-    </div>
-    <div class="panel tablewrap"><table><thead><tr><th>Bet</th><th>Horizon</th><th>First gate</th><th>Gate KPI</th></tr></thead><tbody id="kpi-body"></tbody></table></div>
-  </div>
-</section>
-
-<section class="chapter gut" id="references" aria-labelledby="ref-h">
-  <div class="inner">
-    <div class="chap-head"><span class="chap-num">08</span><div class="text"><span class="eyebrow">Reference companies</span><h2 id="ref-h">Above our peers, below the platforms</h2><p class="lede">No business school publishes an innovation budget. These are the closest published figures as a share of revenue. They are not like-for-like, so the bars show what each one counts.</p></div></div>
-    <div class="panel" style="display:flex;flex-direction:column;gap:14px">
-      <div class="refbars" id="refbars"></div>
-      <div class="reflegend"><span><i style="background:var(--h1)"></i>Technology, IT or product R&amp;D</span><span><i style="background:var(--muted)"></i>Academic research</span><span><i style="background:var(--h2)"></i>IE innovation budget (proposed)</span></div>
-    </div>
-    <div class="grid3 refcards">
-      <article class="panel"><span class="eyebrow">Reference 1 · USA</span><h3>Harvard Business School</h3><ul><li>Revenue $1.13B, research $172M, IT $137M (FY2025)</li><li>Four-year digital transformation: AI course and tutor bots</li><li>Foundry, an AI platform for founders</li><li>HBS Online run separately ($63M, under price pressure)</li></ul><p class="take"><b>What we take</b>Fund AI change as a multi-year programme (our H1) and keep ventures outside the core (our H3).</p><a href="https://www.hbs.edu/about/annualreport/2025/financials/from-the-cfo" target="_blank" rel="noopener">HBS Annual Report 2025</a></article>
-      <article class="panel"><span class="eyebrow">Reference 2 · Spain</span><h3>IESE Business School</h3><ul><li>Revenue €116.1M (FY2022, latest published)</li><li>Technology €8.0M, research €6.8M</li><li>Technology investment €2.8M, about 2.4% of revenue</li><li>No separate innovation budget</li></ul><p class="take"><b>What we take</b>Our closest Spanish peer invests far less in new value. Our 5% is a deliberate step up.</p><a href="https://www.iese.edu/es/wp-content/uploads/sites/2/2024/01/FY22-IESE-Financial-Information.pdf" target="_blank" rel="noopener">IESE Financial Information FY22</a></article>
-      <article class="panel"><span class="eyebrow">Reference 3 · USA</span><h3>Coursera</h3><ul><li>Revenue $757.5M (2025)</li><li>R&amp;D $121.6M, 16% of revenue</li><li>Platform and AI tools such as AI Course Builder</li><li>R&amp;D down from 19% in 2024</li></ul><p class="take"><b>What we take</b>We cannot outspend AI-native platforms, so we back startups and partners (H3 venture studio) instead of building every platform.</p><a href="https://stockanalysis.com/stocks/cour/financials/income-statement/" target="_blank" rel="noopener">Coursera income statement</a></article>
-    </div>
-    <p class="panel" style="font-size:0.92rem"><b>One more lesson, edX.</b> Harvard and MIT invested $40M each in edX and sold it to 2U for $800M in 2021. Bold education bets pay off when they sit outside the core business. <a href="https://www.harvardmagazine.com/2021/08/jhj-edx-sold" target="_blank" rel="noopener">Harvard Magazine</a></p>
-  </div>
-</section>
-
-<section class="chapter gut" id="ask" aria-labelledby="ask-h">
-  <div class="inner">
-    <div class="ask">
-      <div style="display:flex;flex-direction:column;gap:16px">
-        <span class="eyebrow" style="color:var(--hero-muted)">09 · The ask</span>
-        <h2 id="ask-h">Approve €17.5M for 2027 and nine bets</h2>
-        <ol>
-          <li><b>Approve the 2027 envelope</b> of €17.5M, ring-fenced from program budgets and academic R&amp;D.</li>
-          <li><b>Approve the nine bets</b> and their first gates, with H2 and H3 money released in tranches.</li>
-          <li><b>Set up a quarterly innovation board</b> chaired by the President, with the Provost and the CFO.</li>
-        </ol>
-      </div>
-      <div class="sign">
-        <div>Aydin Suleymanov<small>Team A</small></div><div>Shahenda Talaat<small>Team A</small></div>
-        <div>Ulvi Ahmadov<small>Team A</small></div><div>Ali Abdullah Alzuwair<small>Team A</small></div>
-        <div>Loay Al Shareef<small>Team A</small></div><div>Nodira Sultankhodjaeva<small>Team A</small></div>
-      </div>
-    </div>
-    <div class="notes">
-      <div><span class="eyebrow">Assumptions</span><ul style="margin-top:8px"><li><b>Revenue of €350M is our estimate.</b> IE does not publish revenue.</li><li><b>R&amp;D of €50M is derived</b> from IE's reported 16.7% of spending.</li><li><b>Amounts per bet are proposed envelopes,</b> not costed plans.</li><li><b>Scores, owners, gates and targets</b> are team proposals for discussion.</li></ul></div>
-      <div><span class="eyebrow">Sources</span><ol style="margin-top:8px">
-        <li><a href="https://www.ie.edu/university/news-events/news/ie-universitys-economic-impact-surpasses-450-million-according-pwc-report/" target="_blank" rel="noopener">IE University: economic impact report (PwC, 2025)</a></li>
-        <li><a href="https://www.comunidad.madrid/transparencia/sites/default/files/19._informe_viabilidad_economica.pdf" target="_blank" rel="noopener">Comunidad de Madrid: IE Universidad Madrid viability report</a></li>
-        <li><a href="https://www.hbs.edu/about/annualreport/2025/financials/from-the-cfo" target="_blank" rel="noopener">HBS Annual Report 2025</a></li>
-        <li><a href="https://www.iese.edu/es/wp-content/uploads/sites/2/2024/01/FY22-IESE-Financial-Information.pdf" target="_blank" rel="noopener">IESE Financial Information FY2021-2022</a></li>
-        <li><a href="https://stockanalysis.com/stocks/cour/financials/income-statement/" target="_blank" rel="noopener">Coursera income statement</a></li>
-        <li><a href="https://hbr.org/2012/05/managing-your-innovation-portfolio" target="_blank" rel="noopener">Nagji and Tuff, Managing Your Innovation Portfolio (HBR, 2012)</a></li>
-        <li><a href="https://www.hepi.ac.uk/reports/student-generative-ai-survey-2026/" target="_blank" rel="noopener">HEPI Student Generative AI Survey 2026</a></li>
-        <li><a href="https://allwork.space/2026/06/one-in-three-job-postings-no-longer-require-a-degree-as-skills-based-hiring-gains-ground/" target="_blank" rel="noopener">Korn Ferry via Allwork: one in three postings drop degrees</a></li>
-        <li><a href="https://digitaleconomy.stanford.edu/event/bharat-chandar-and-ruyu-chen-canaries-in-the-coal-mine-six-facts-about-the-recent-employment-effects-of-artificial-intelligence" target="_blank" rel="noopener">Stanford Digital Economy Lab: Canaries in the Coal Mine</a></li>
-        <li><a href="https://www.harvardmagazine.com/2021/08/jhj-edx-sold" target="_blank" rel="noopener">Harvard Magazine: edX sold</a></li>
-      </ol></div>
-    </div>
-  </div>
-</section>
-</main>
-
-<footer class="gut"><div class="inner">Team A, IE Executive MBA, Corporate Entrepreneurship (Prof. Daniel Medina). An academic exercise, not affiliated with or endorsed by IE University's management. Built with the help of Claude (AI); figures checked against the linked sources by the team.</div></footer>
-
-<div class="modal" id="modal" hidden role="dialog" aria-modal="true" aria-labelledby="m-title"><div class="sheet" id="sheet"></div></div>
+<footer class="src"><div class="in">
+<p class="lab">Sources. Public sources support market signals and IE's existing capabilities, not the prices, budgets, customer decisions or success of the proposed concept.</p>
+<ul>
+<li><a href="https://www.ie.edu/university/news-events/news/ie-university-becomes-one-first-top-universities-integrate-openai-tools-throughout-entire-academic-ecosystem/">IE University and OpenAI, Feb 2025</a></li>
+<li><a href="https://www.ie.edu/university/resources/ie-labs/">IEU Labs</a></li>
+<li><a href="https://www.headspringexecutive.com/">Headspring Executive Development</a></li>
+<li><a href="https://www.ie.edu/alumni/lifelong-learning/">IE Alumni lifelong learning</a></li>
+<li><a href="https://www.weforum.org/publications/the-future-of-jobs-report-2025/3-skills-outlook">WEF, Future of Jobs Report 2025</a></li>
+<li><a href="https://www.oecd.org/en/publications/a-skills-first-labour-market_2e1b85f0-en/full-report.html">OECD, A Skills-First Labour Market (2026)</a></li>
+<li><a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=uriserv%3AOJ.C_.2022.243.01.0010.01.ENG">Council of the EU, micro-credentials (2022)</a></li>
+<li><a href="https://vervoe.com/">Vervoe</a> · <a href="https://www.testgorilla.com/">TestGorilla</a> · <a href="https://www.workera.ai/">Workera</a></li>
+</ul>
+<p style="margin-top:14px">Team A: Ulvi Ahmadov, Ali Abdullah Alzuwair, Loay Al Shareef, Aydin Suleymanov, Nodira Sultankhodjaeva, Shahenda Talaat. IE Executive MBA, Corporate Entrepreneurship, Fall 2026.</p>
+</div></footer>
 
 <script>
-(function () {
-  "use strict";
-  var HZ = {
-    H1: { name: "H1 · Core", color: "var(--h1)", row: 0 },
-    H2: { name: "H2 · Adjacent", color: "var(--h2)", row: 1 },
-    H3: { name: "H3 · New", color: "var(--h3)", row: 2 }
-  };
-  var SPLITS = {
-    ours: { label: "Our split 54/30/16", s: [9.5 / 17.5, 5.25 / 17.5, 2.75 / 17.5] },
-    classic: { label: "Classic 70/20/10", s: [0.70, 0.20, 0.10] },
-    bold: { label: "Bold 40/35/25", s: [0.40, 0.35, 0.25] },
-    defend: { label: "Defend 80/15/5", s: [0.80, 0.15, 0.05] }
-  };
-  var BETS = [
-    { id: "tutors", h: "H1", name: "AI tutors for class preparation", short: "AI tutors", base: 3.5, risk: 1.2, time: 0.7,
-      what: "AI tutors, built on IE's ChatGPT Edu rollout, cover theory and practice before class. Class time moves to cases, debate and coaching.",
-      m1: "Driver 1, future A: AI teaches, humans coach.", owner: "Vice Dean for Learning Innovation (proposed)",
-      gate: "End of 2027: pilot in 2 master's programs", kpi: "At least 60% of class time on application, with equal or better exam results", next: "Scale to all programs if results hold for two terms.",
-      sc: { fit: 4, rev: 3, feas: 5, speed: 5 }, years: [2027, 2030], gateYear: 2027.9 },
-    { id: "assess", h: "H1", name: "AI-resistant live assessment", short: "Live assessment", base: 2.5, risk: 1.6, time: 1.0,
-      what: "Oral defences, live case exams and simulations replace take-home essays as the main grade in master's and MBA programs.",
-      m1: "Driver 3: AI-written work weakens traditional assessment.", owner: "Academic Quality Office (proposed)",
-      gate: "September 2028: live assessment in all MBA core courses", kpi: "At least half of final grades from live assessment; employer trust in IE grades up in the annual survey", next: "Extend to bachelor's programs after one academic year.",
-      sc: { fit: 5, rev: 2, feas: 4, speed: 4 }, years: [2027, 2030], gateYear: 2028.7 },
-    { id: "portfolio", h: "H1", name: "Verified skills portfolio for every graduate", short: "Skills portfolio", base: 3.5, risk: 2.2, time: 1.6,
-      what: "Every graduate leaves with a portfolio of assessed projects that employers can check, on top of the diploma.",
-      m1: "Drivers 2 and 3: employers want work samples and verified capabilities.", owner: "Careers Office with the Registrar (proposed)",
-      gate: "Class of 2028: 30% of graduates with a portfolio", kpi: "Share of graduates with a portfolio; employer views per portfolio", next: "Becomes the base for IE Verify (H3) once employers use it.",
-      sc: { fit: 5, rev: 3, feas: 4, speed: 3 }, years: [2027, 2031], gateYear: 2028.5 },
-    { id: "market", h: "H2", name: "Employer project marketplace", short: "Project marketplace", base: 2.0, risk: 3.6, time: 2.2,
-      what: "Companies post real problems. Student teams solve them for credit. Employers pay a fee and recruit from the teams.",
-      m1: "Driver 2, future A: the missing first rung. Students get real work samples before their first job.", owner: "Corporate Relations (proposed)",
-      gate: "End of 2028: 50 paying companies", kpi: "Paying companies; hires that come from projects; fee revenue", next: "Second tranche when 50 companies have paid for at least one project.",
-      sc: { fit: 4, rev: 4, feas: 3, speed: 3 }, years: [2027, 2033], gateYear: 2028.9 },
-    { id: "academies", h: "H2", name: "Corporate AI-upskilling academies", short: "Corporate academies", base: 2.0, risk: 3.0, time: 1.9,
-      what: "Modular AI-upskilling programs with verified assessments, sold to employers through Headspring, IE's custom-programs joint venture with the Financial Times.",
-      m1: "Lifelong reskilling (our 4th driver) and Driver 3: employers pay for proof, not attendance.", owner: "Headspring and Executive Education (proposed)",
-      gate: "Mid 2028: 3 corporate clients renew", kpi: "Contracts signed; revenue per client; renewals", next: "Scale sales once 3 clients renew.",
-      sc: { fit: 4, rev: 5, feas: 4, speed: 3 }, years: [2027, 2034], gateYear: 2028.5 },
-    { id: "alumni", h: "H2", name: "Alumni learning pass (pilot)", short: "Alumni pass", base: 1.25, risk: 3.2, time: 1.3,
-      what: "Modular courses and assessments for alumni. We test willingness to pay before committing to any subscription.",
-      m1: "The challenge: renewing professional capabilities throughout a career.", owner: "Alumni Relations (proposed)",
-      gate: "End of 2027: pilot with 2,000 invited alumni", kpi: "At least 10% of invited alumni pay; renewal after year one", next: "Launch a subscription only if the 10% threshold is met.",
-      sc: { fit: 4, rev: 4, feas: 4, speed: 4 }, years: [2027, 2030], gateYear: 2027.9 },
-    { id: "verify", h: "H3", name: "IE Verify: open skills credentials", short: "IE Verify", base: 1.25, risk: 4.4, time: 2.7,
-      what: "Skills assessment and credentials for any learner or employer, not only IE students. IE becomes a trusted verifier.",
-      m1: "Driver 3, future A: verified capabilities replace some degree signals.", owner: "Innovation Hub new-venture team (proposed)",
-      gate: "2029: paid pilot with 2 named employers", kpi: "External assessments sold; employers accepting IE Verify in hiring", next: "Tranches of about €0.4M, each after a pilot with a named employer.",
-      sc: { fit: 5, rev: 4, feas: 2, speed: 2 }, years: [2029, 2035], gateYear: 2029.6 },
-    { id: "studio", h: "H3", name: "Venture studio for AI-native learning", short: "Venture studio", base: 1.0, risk: 4.1, time: 2.4,
-      what: "Build or back AI-native learning startups, with IE as the first customer. Ventures sit outside the core business, the edX lesson.",
-      m1: "Driver 1 and new competitors: tech firms and platforms that teach and certify.", owner: "Innovation Hub with IE Venture Lab (proposed)",
-      gate: "2028: first 3 startups piloting at IE", kpi: "Startups backed; pilots at IE; follow-on funding raised", next: "Money per startup released in stages.",
-      sc: { fit: 3, rev: 3, feas: 3, speed: 2 }, years: [2028, 2035], gateYear: 2028.8 },
-    { id: "outcome", h: "H3", name: "Outcome-based tuition pilot", short: "Outcome tuition", base: 0.5, risk: 4.7, time: 2.85,
-      what: "In one pilot program, part of the fee is paid only after a defined career outcome.",
-      m1: "Degree cost and return on investment, and the weaker first-job promise (Driver 2).", owner: "CFO's office with one program director (proposed)",
-      gate: "2030: first cohort's outcomes measured", kpi: "Pilot enrolment; share reaching the outcome; cost of the risk taken", next: "Extend only if outcome rates and margins hold for one cohort.",
-      sc: { fit: 3, rev: 3, feas: 2, speed: 1 }, years: [2029, 2033], gateYear: 2030.5 }
-  ];
-  var CRIT = [
-    { k: "fit", label: "Fit with the M1 challenge", w: 40 },
-    { k: "rev", label: "Revenue potential", w: 25 },
-    { k: "feas", label: "Feasibility for IE", w: 20 },
-    { k: "speed", label: "Speed to evidence", w: 15 }
-  ];
-  var DRIVERS = [
-    { n: "★ Driver 1", title: "AI tutors and learning agents", pick: "A",
-      A: { t: "AI teaches, humans coach", d: "Personal AI agents deliver most foundational knowledge. Faculty focus on judgment, debate, applied projects and mentoring.", s: [["About 95% of UK students use generative AI (HEPI 2026)", "https://www.hepi.ac.uk/reports/student-generative-ai-survey-2026/"], ["Chegg lost about 99% of its value as students moved to free AI", "https://www.techspot.com/news/110041-chegg-replaces-ceo-cuts-45-staff-ai-decimates.html"]] },
-      B: { t: "AI remains a study aid", d: "Concerns about quality, overreliance and regulation keep much of today's teaching model in place.", s: [["INSEAD: AI unlikely to disrupt the business-school model near term", "https://www.insead.edu/faculty-research/publications/journal-articles/future-business-schools-where-do-we-stand-twenty"]] } },
-    { n: "★ Driver 2", title: "AI and the first career rung", pick: "A",
-      A: { t: "The missing first rung", d: "AI absorbs a real share of routine junior tasks. Employers expect work samples, practical experience and AI fluency before hiring.", s: [["Employment of 22 to 25 year olds in the most AI-exposed jobs fell about 13% (Stanford)", "https://digitaleconomy.stanford.edu/event/bharat-chandar-and-ruyu-chen-canaries-in-the-coal-mine-six-facts-about-the-recent-employment-effects-of-artificial-intelligence"]] },
-      B: { t: "Augmented juniors", d: "AI makes young employees more productive and creates new roles, so entry-level work adapts instead of collapsing.", s: [["WEF: 170M jobs created and 92M displaced by 2030", "https://www.weforum.org/press/2025/01/future-of-jobs-report-2025-78-million-new-job-opportunities-by-2030-but-urgent-upskilling-needed-to-prepare-workforces/"]] } },
-    { n: "★ Driver 3", title: "Trust in degrees and credentials", pick: "A",
-      A: { t: "Verified capabilities replace some degree signals", d: "Employers rely more on assessed skills, real projects and work records. A diploma alone says less.", s: [["One in three job postings no longer requires a degree (Korn Ferry 2026)", "https://allwork.space/2026/06/one-in-three-job-postings-no-longer-require-a-degree-as-skills-based-hiring-gains-ground/"]] },
-      B: { t: "The degree remains the trusted filter", d: "Prestigious universities keep their signal; other credentials only add to it.", s: [["Dropping degree requirements changed fewer than 1 in 700 hires (Harvard and Burning Glass)", "https://glider.ai/?p=47367"]] } }
-  ];
-  var STANCES = [
-    { k: "defend", t: "Defend", d: "Protect the degree. Fund efficiency and better teaching only.", cost: "3% of revenue · 80/15/5", int: 3, split: "defend" },
-    { k: "adapt", t: "Adapt", d: "Follow the market with a textbook portfolio and wait for proof.", cost: "4% of revenue · 70/20/10", int: 4, split: "classic" },
-    { k: "lead", t: "Lead, selectively", d: "Our choice. Lead on proof of capability and employer links; never on cheap content.", cost: "5% of revenue · 54/30/16", int: 5, split: "ours" }
-  ];
-  var PHASES = [
-    { k: "prove", t: "Prove", y: "2027 to 2028", from: 2027, to: 2029, d: ["Pilot AI tutors and live assessment in master's programs", "Alumni pass pilot and first corporate academies", "Marketplace opens with first paying companies", "Venture studio backs first 3 startups"] },
-    { k: "expand", t: "Expand", y: "2029 to 2031", from: 2029, to: 2032, d: ["Every graduate leaves with a verified portfolio (2030)", "IE Verify paid pilots with named employers", "Outcome-based tuition pilot measures its first cohort", "Subscription decision for alumni, based on pilot data"] },
-    { k: "scale", t: "Scale", y: "2032 to 2035", from: 2032, to: 2036, d: ["IE Verify opens to any learner and employer", "Employers and alumni bring €35M a year (target)", "Studio ventures raise follow-on funding or are absorbed", "Portfolio re-balanced toward what worked"] }
-  ];
+{
+const $=id=>document.getElementById(id);
+const eur=v=>v>=1e6?'€'+(v/1e6).toFixed(v%1e6?2:1).replace(/\.?0+$/,'')+'M':v>=1000?'€'+Math.round(v/1000)+'k':'€'+v;
 
-  var state = { rev: 350, intensity: 5, split: "ours", filter: "all", sort: "horizon", phase: "prove", stance: "lead",
-    w: { fit: 40, rev: 25, feas: 20, speed: 15 }, driverView: ["A", "A", "A"] };
+const Q=[
+["What exactly do you want from me today?","Approve a conditional €2M ceiling, release €7,500 for a 4-week discovery and name two owners. Everything else waits for evidence.","#decision"],
+["Are degrees dying?","Probably not. Skills-first hiring is growing, but degrees and experience still matter to employers. We plan for a split market and keep an option if degrees weaken.","#future"],
+["Why only €2M, not a bigger bet?","It is sized bottom-up from five initiatives that are new for IE: about 0.6% of estimated revenue, within the university norm. H3 money is a ceiling, not an authorization.","#portfolio"],
+["Why test credentials and not AI teaching?","IE already has ChatGPT Edu, IEU Labs and Headspring. H1 and H2 extend those. Only this test asks whether IE's academic trust earns money outside its own teaching.","#experiment"],
+["How much can we lose this year?","At most €60,000 in 2027, and only €7,500 unless an employer pays €22,500 first. Every stage has a stop rule.","#experiment"],
+["What if nobody pays?","We stop or pivot after four weeks and €7,500. Interviews alone do not count as demand.","#experiment"],
+["Why not build our own platform?","Building is slow and costly for a test that may stop early. A partner runs delivery; IE keeps rubrics, decisions and brand.","#partner"],
+["Could this hurt the IE brand?","The pilot output is an evidence report, never a degree-equivalent. No ECTS, no alumni rights, and academic sign-off is separate from sales.","#experiment"],
+["Is our culture ready?","Partly unknown: our view of approval cycles and incentives is an assumption to check with staff. We propose clear gates, protected time and decision rights.","#culture"],
+["What would make you change the plan?","Shifts in employer hiring, adoption of independent credentials, demand for premium programs and corporate learning spend. We review them at each gate.","#future"]];
+let qi=0;
+const drawQ=()=>{$('qlist').innerHTML=Q.map((q,i)=>`<button aria-pressed="${i===qi}" data-q="${i}">${q[0]}</button>`).join('');
+$('ans').innerHTML=`<p class="lab">${Q[qi][0]}</p><p class="short">${Q[qi][1]}</p><a class="go" href="${Q[qi][2]}">See the evidence →</a>`;};
+$('qlist').addEventListener('click',e=>{const b=e.target.closest('button');if(b){qi=+b.dataset.q;drawQ();}});
+drawQ();
 
-  function $(id) { return document.getElementById(id); }
-  function fmt(v) { return "€" + (v >= 10 ? v.toFixed(1) : v.toFixed(2)).replace(/\.?0+$/, "") + "M"; }
-  function total() { return state.rev * state.intensity / 100; }
-  function horizonTotals() { var t = total(), s = SPLITS[state.split].s; return { H1: t * s[0], H2: t * s[1], H3: t * s[2] }; }
-  function baseH(h) { return BETS.filter(function (b) { return b.h === h; }).reduce(function (a, b) { return a + b.base; }, 0); }
-  function betAmount(b) { return horizonTotals()[b.h] * b.base / baseH(b.h); }
-  function score(b) { var sw = 0, s = 0; CRIT.forEach(function (c) { s += b.sc[c.k] * state.w[c.k]; sw += state.w[c.k]; }); return sw ? Math.round(s / sw * 20) : 0; }
+const INI=["AI-native degree redesign","Work-integrated degree 2.0","Lifelong capability pathways","Employer-linked capability pathways","IE Open Credentials"];
+const SC=[
+{id:1,n:"Prestige Renewed",d:"Universities control learning; degrees and reputation stay the trusted signal.",ie:"Strengthen premium programs and outcomes.",r:[2,1,1,1,0]},
+{id:2,n:"Verified University",d:"Universities still lead, but employers trust demonstrated capability.",ie:"Add rigorous evidence of learning inside degrees.",r:[2,2,1,1,1]},
+{id:3,n:"The Split Education Market",d:"Employers, AI platforms and learners gain share; premium degrees still matter. Our planning case.",ie:"Defend premium, extend beyond graduation, test new recognition.",r:[2,2,2,2,1]},
+{id:4,n:"Open Skills Market",d:"Learning is distributed; portable proof of capability is the signal.",ie:"Independent credentials as an option, not a certain future.",r:[1,1,2,2,2]}];
+let si=2;const mark=['○','●','●●'];
+const drawS=()=>{SC.forEach((s,i)=>{$('s'+s.id).outerHTML=`<button class="sc${s.id===3?' plan':''}" id="s${s.id}" data-s="${i}" aria-pressed="${i===si}"><b>${s.id} · ${s.n}</b><span>${s.ie}</span>${s.id===3?'<span class="tag t3">Our planning case</span>':''}</button>`;});
+const s=SC[si];$('scT').textContent=s.id+' · '+s.n;$('scD').textContent=s.d;
+$('rob').innerHTML=INI.map((n,i)=>`<tr><td>${n}</td><td class="n"><span class="dot d${s.r[i]}">${mark[s.r[i]]}</span></td></tr>`).join('');};
+$('mx').addEventListener('click',e=>{const b=e.target.closest('.sc');if(b){si=+b.dataset.s;drawS();}});
+drawS();
 
-  /* 01 Drivers + stances */
-  function renderDrivers() {
-    var wrap = $("drivers"); wrap.innerHTML = "";
-    DRIVERS.forEach(function (d, i) {
-      var v = state.driverView[i], f = d[v];
-      var card = document.createElement("article"); card.className = "panel driver";
-      card.innerHTML = '<span class="star">' + d.n + '</span><h3>' + d.title + '</h3>' +
-        '<div class="seg2" role="group" aria-label="Futures for ' + d.title + '"><button data-i="' + i + '" data-v="A" aria-pressed="' + (v === "A") + '">Future A</button><button data-i="' + i + '" data-v="B" aria-pressed="' + (v === "B") + '">Future B</button></div>' +
-        '<div class="future-body">' + (v === d.pick ? '<span class="pick">● Our scenario uses this future</span>' : '<span class="eyebrow">Alternative future</span>') +
-        '<b>' + f.t + '</b><p>' + f.d + '</p><ul>' + f.s.map(function (s) { return '<li><a href="' + s[1] + '" target="_blank" rel="noopener">' + s[0] + '</a></li>'; }).join("") + '</ul></div>';
-      wrap.appendChild(card);
-    });
-    wrap.querySelectorAll(".seg2 button").forEach(function (b) { b.addEventListener("click", function () { state.driverView[+b.dataset.i] = b.dataset.v; renderDrivers(); }); });
-  }
-  function renderStances() {
-    var wrap = $("stances"); wrap.innerHTML = "";
-    STANCES.forEach(function (s) {
-      var b = document.createElement("button"); b.className = "stance"; b.setAttribute("aria-pressed", String(state.stance === s.k));
-      b.innerHTML = '<b>' + s.t + '</b><span>' + s.d + '</span><span class="mono">' + s.cost + '</span>';
-      b.addEventListener("click", function () { state.stance = s.k; state.intensity = s.int; state.split = s.split; $("s-int").value = s.int; renderAll(); });
-      wrap.appendChild(b);
-    });
-  }
+const P={ours:{l:"Our split 45 / 40 / 15",v:[45,40,15]},classic:{l:"Classic 70 / 20 / 10",v:[70,20,10]}};
+const HZ=[
+{h:"H1",c:"t1",t:"Strengthen the core",w:"Protects the core if degree trust stays strong.",i:[["AI-native degree redesign",600000,"Redesign learning time, faculty work and independent assessment, not just add an AI assistant."],["Work-integrated degree 2.0",300000,"Turn selected real projects into rigorous, assessed curriculum beyond today's IEU Labs."]]},
+{h:"H2",c:"t2",t:"Adjacent growth",w:"Our planning case moves growth to employers and professionals.",i:[["Lifelong capability pathways",350000,"Paid post-degree career transitions with shown outcomes, not alumni discounts or a course library."],["Employer-linked capability pathways",450000,"Repeatable pathways co-developed with employers, beyond Headspring's custom programs."]]},
+{h:"H3",c:"t3",t:"Transformational option",w:"An option if learning and qualification unbundle. Released in stages.",i:[["IE Open Credentials",300000,"Assess capabilities learned outside IE's own programs. Our M3 experiment."]]}];
+let pk='ours';const TOT=2000000;
+const drawP=()=>{$('presets').innerHTML=Object.keys(P).map(k=>`<button class="btn" data-p="${k}" aria-pressed="${k===pk}">${P[k].l}</button>`).join('');
+const v=P[pk].v;$('bar').innerHTML=v.map((p,i)=>`<div class="b${i+1}" style="flex-grow:${p}"><span>H${i+1} · ${p}%</span>${eur(TOT*p/100)}</div>`).join('');
+const d=v.map((p,i)=>TOT*(p-P.ours.v[i])/100);
+$('barNote').textContent=pk==='ours'?"Same €2M total. H2 gets more than usual because our planning case moves growth to employers and professionals.":`Versus our split: H1 ${d[0]>=0?'+':'−'}${eur(Math.abs(d[0]))}, H2 ${d[1]>=0?'+':'−'}${eur(Math.abs(d[1]))}, H3 ${d[2]>=0?'+':'−'}${eur(Math.abs(d[2]))}. H2, where our planning case puts growth, would be cut in half.`;};
+$('presets').addEventListener('click',e=>{const b=e.target.closest('button');if(b){pk=b.dataset.p;drawP();}});
+drawP();
+$('hz').innerHTML=HZ.map(h=>`<div class="card"><span class="tag ${h.c}">${h.h} · ${eur(h.i.reduce((a,x)=>a+x[1],0))}</span><h3 style="margin-top:8px">${h.t}</h3><p class="small" style="margin-top:4px">${h.w}</p>${h.i.map(x=>`<div class="ini"><b>${x[0]}</b><span class="n">${h.h==='H3'?'up to ':''}${eur(x[1])}</span><p>${x[2]}</p></div>`).join('')}</div>`).join('');
 
-  /* 02 Budget simulator */
-  function renderBudget() {
-    var t = total(), ht = horizonTotals();
-    $("o-rev").textContent = "€" + state.rev + "M"; $("o-int").textContent = state.intensity.toFixed(1) + "%";
-    $("f-inno").textContent = fmt(t); $("f-inno-note").textContent = state.intensity.toFixed(1) + "% of an estimated €" + state.rev + "M revenue.";
-    $("f-rev").textContent = "€" + state.rev + "M";
-    $("o-total").textContent = fmt(t);
-    var isOurs = state.rev === 350 && state.intensity === 5 && state.split === "ours";
-    $("o-total-note").textContent = "a year · " + (isOurs ? "our proposal" : "what-if scenario");
-    var sb = $("stackbar"); sb.innerHTML = "";
-    ["H1", "H2", "H3"].forEach(function (h) {
-      var d = document.createElement("div"); d.style.flex = String(Math.max(ht[h], 0.0001)); d.style.background = HZ[h].color; d.style.color = "var(--on-" + h.toLowerCase() + ")";
-      d.innerHTML = '<b>' + fmt(ht[h]) + '</b><small>' + HZ[h].name + '</small>'; sb.appendChild(d);
-    });
-    var w = $("waffle"); w.innerHTML = "";
-    var n = Math.round(t / 0.25), cells = Math.max(100, Math.ceil(n / 20) * 20);
-    var c1 = Math.round(ht.H1 / 0.25), c2 = Math.round(ht.H2 / 0.25);
-    for (var i = 0; i < cells; i++) {
-      var q = document.createElement("i");
-      if (i < n) q.style.background = i < c1 ? "var(--h1)" : i < c1 + c2 ? "var(--h2)" : "var(--h3)";
-      w.appendChild(q);
-    }
-    $("waffle-note").textContent = "Each square is €0.25M · " + n + " squares filled.";
-    var delta = t - 17.5;
-    $("diff").textContent = isOurs ? "This is the figure on our Miro board: €9.5M + €5.25M + €2.75M = €17.5M." :
-      "Compared with our proposal: " + (delta >= 0 ? "+" : "−") + fmt(Math.abs(delta)) + " a year. H3 gets " + fmt(ht.H3) + " instead of €2.75M.";
-    var pr = $("presets"); pr.innerHTML = "";
-    Object.keys(SPLITS).forEach(function (k) {
-      var b = document.createElement("button"); b.className = "btn"; b.textContent = SPLITS[k].label; b.setAttribute("aria-pressed", String(state.split === k));
-      b.addEventListener("click", function () { state.split = k; state.stance = k === "ours" ? "lead" : k === "classic" ? "adapt" : k === "defend" ? "defend" : ""; renderAll(); });
-      pr.appendChild(b);
-    });
-  }
+const ST=[["Today","€7,500","Discovery, 4 weeks","Show a priced concept to corporate learning buyers.","A named budget owner commits €22,500 for 30 employees.","Nobody pays: stop or pivot. Interviews do not count."],
+["After paid demand","up to €52,500","Pilot, 30 participants","€15k rubric design, up to €25k technology (M4), €7.5k assessors, €5k data and legal.","Scores agree against thresholds set by academics beforehand.","Inconsistent scores, fairness or privacy issues: stop."],
+["After the pilot","inside the €52.5k","Buyer-use test","Follow whether the employer uses reports in a real decision.","Reports used, and a second cohort requested.","Interesting but ignored: fold into IE programs or stop."],
+["Growth Board","next stage","Gate decision","Scale, pivot or stop, based on evidence.","Paid demand, reliable scoring, real use.","Weak evidence on any of the three: no scaling."]];
+$('stages').innerHTML=ST.map(s=>`<div class="st"><p class="lab">${s[0]}</p><p class="amt">${s[1]}</p><h3>${s[2]}</h3><p class="small">${s[3]}</p><p class="pass">Pass: ${s[4]}</p><p class="stop">Stop: ${s[5]}</p></div>`).join('');
 
-  /* 03 Bets */
-  function renderFilters() {
-    var f = $("filters"); f.innerHTML = "";
-    [["all", "All nine"], ["H1", "H1 · Core"], ["H2", "H2 · Adjacent"], ["H3", "H3 · New"]].forEach(function (p) {
-      var b = document.createElement("button"); b.className = "btn"; b.textContent = p[1]; b.setAttribute("aria-pressed", String(state.filter === p[0]));
-      b.addEventListener("click", function () { state.filter = p[0]; renderBets(); renderFilters(); });
-      f.appendChild(b);
-    });
-  }
-  function sortedBets() {
-    var list = BETS.slice();
-    if (state.sort === "budget") list.sort(function (a, b) { return betAmount(b) - betAmount(a); });
-    if (state.sort === "score") list.sort(function (a, b) { return score(b) - score(a); });
-    return list;
-  }
-  function renderBets() {
-    var g = $("betgrid"); g.innerHTML = "";
-    sortedBets().forEach(function (b) {
-      if (state.filter !== "all" && state.filter !== b.h) return;
-      var a = document.createElement("article"); a.className = "bet " + b.h;
-      a.innerHTML = '<div class="row"><span class="pill ' + b.h + '">' + HZ[b.h].name + '</span><span class="amt">' + fmt(betAmount(b)) + '</span></div>' +
-        '<h3>' + b.name + '</h3><p>' + b.what + '</p><span class="score">Priority score ' + score(b) + ' / 100</span>' +
-        '<details><summary>Owner, first gate, M1 link</summary><dl><dt>Owner</dt><dd>' + b.owner + '</dd><dt>First gate</dt><dd>' + b.gate + '</dd><dt>M1 link</dt><dd>' + b.m1 + '</dd></dl></details>' +
-        '<button class="open" data-id="' + b.id + '">Open the full brief →</button>';
-      g.appendChild(a);
-    });
-    g.querySelectorAll(".open").forEach(function (el) { el.addEventListener("click", function () { openModal(el.dataset.id); }); });
-  }
+const calc=()=>{const p=+$('pr').value,v=+$('vc').value,f=+$('fc').value;$('prV').textContent='€'+p;$('vcV').textContent='€'+v;$('fcV').textContent=eur(f);
+if(p<=v){$('be').textContent='Never';$('beN').textContent='Price must be above variable cost.';return;}
+const n=Math.ceil(f/(p-v));$('be').textContent=n.toLocaleString('en');
+$('beN').textContent=`assessments a year to cover fixed costs. Our 2028 case assumes 500 (${Math.round(n/30)} cohorts of 30 needed).`;};
+['pr','vc','fc'].forEach(id=>$(id).addEventListener('input',calc));
+$('reset').addEventListener('click',()=>{$('pr').value=600;$('vc').value=200;$('fc').value=160000;calc();});calc();
 
-  /* 04 Risk map */
-  var NS = "http://www.w3.org/2000/svg";
-  function mk(n, a) { var e = document.createElementNS(NS, n); for (var k in a) e.setAttribute(k, a[k]); return e; }
-  function renderMap() {
-    var s = $("rmap"); while (s.firstChild) s.removeChild(s.firstChild);
-    var L = 70, R = 20, T = 20, B = 56, W = 720, H = 440, pw = W - L - R, ph = H - T - B;
-    function X(v) { return L + v / 3 * pw; } function Y(v) { return T + ph - (v - 1) / 4 * ph; }
-    s.appendChild(mk("rect", { x: X(2), y: T, width: pw / 3, height: ph * 0.45, class: "zone" }));
-    var zl = mk("text", { x: X(3) - 8, y: T + 16, "text-anchor": "end" }); zl.textContent = "EXPLORE ZONE: SMALL, STAGED BETS"; s.appendChild(zl);
-    for (var r = 1; r <= 5; r++) { s.appendChild(mk("line", { x1: L, x2: L + pw, y1: Y(r), y2: Y(r), class: "gl" })); var t = mk("text", { x: L - 10, y: Y(r) + 4, "text-anchor": "end" }); t.textContent = r; s.appendChild(t); }
-    [["0 to 1 yr", 0], ["1 to 2 yrs", 1], ["2 to 3 yrs", 2], ["3 yrs", 3]].forEach(function (p) { var t = mk("text", { x: X(p[1]), y: T + ph + 18, "text-anchor": p[1] === 0 ? "start" : p[1] === 3 ? "end" : "middle" }); t.textContent = p[0]; s.appendChild(t); });
-    var xt = mk("text", { x: L + pw / 2, y: H - 10, "text-anchor": "middle", class: "t" }); xt.textContent = "Time to first evidence"; s.appendChild(xt);
-    var yt = mk("text", { x: 16, y: T + ph / 2, "text-anchor": "middle", class: "t", transform: "rotate(-90 16 " + (T + ph / 2) + ")" }); yt.textContent = "Uncertainty (1 low, 5 high)"; s.appendChild(yt);
-    BETS.slice().sort(function (a, b) { return betAmount(b) - betAmount(a); }).forEach(function (b) {
-      var cx = X(b.time), cy = Y(b.risk), rr = 7 + Math.sqrt(betAmount(b) / 3.5) * 26;
-      var c = mk("circle", { cx: cx, cy: cy, r: rr, class: "b", tabindex: "0", role: "button", "aria-label": b.name + ", " + fmt(betAmount(b)) });
-      c.style.fill = HZ[b.h].color; c.style.fillOpacity = "0.88";
-      c.addEventListener("click", function () { openModal(b.id); });
-      c.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openModal(b.id); } });
-      var tt = mk("title", {}); tt.textContent = b.name + " · " + fmt(betAmount(b)); c.appendChild(tt);
-      s.appendChild(c);
-      var right = cx + rr + 6 + b.short.length * 6.6 < W - R;
-      var lb = mk("text", { x: right ? cx + rr + 5 : cx - rr - 5, y: cy + 4, "text-anchor": right ? "start" : "end", class: "bl" }); lb.textContent = b.short; s.appendChild(lb);
-    });
-  }
+const G={"Leadership and Growth Board":["Grant bounded discovery funding; decide at explicit gates; accept stopping weak pilots.","Strategic fit, resource discipline and brand protection."],
+"Faculty and academic quality":["Define competence and rubrics; independently review scoring; separate academic sign-off from sales pressure.","Validity, consistency and academic rigor."],
+"Venture lead and corporate relations":["Get paid customer commitments; compare alternatives; report evidence, including negative results.","Willingness to pay, repeatability and customer use."],
+"Technology, legal and operations":["Provide a time-boxed privacy and feasibility review, an approved pilot data workflow and vendor oversight.","Compliance and operational safety."]};
+let gk=Object.keys(G)[0];
+const drawG=()=>{$('grp').innerHTML=Object.keys(G).map(k=>`<button class="btn" data-g="${k}" aria-pressed="${k===gk}">${k}</button>`).join('');
+$('grpOut').innerHTML=`<div class="g2"><div><p class="lab">What you would see them do</p><p style="margin-top:4px">${G[gk][0]}</p></div><div><p class="lab">Accountable for</p><p style="margin-top:4px">${G[gk][1]}</p></div></div>`;};
+$('grp').addEventListener('click',e=>{const b=e.target.closest('button');if(b){gk=b.dataset.g;drawG();}});
+drawG();
 
-  /* 05 Prioritize */
-  function renderWeights() {
-    var w = $("weights"); w.innerHTML = '<span class="eyebrow">Criteria weights</span>';
-    CRIT.forEach(function (c) {
-      var d = document.createElement("div"); d.className = "ctrl";
-      d.innerHTML = '<label for="w-' + c.k + '">' + c.label + ' <output id="wo-' + c.k + '">' + state.w[c.k] + '</output></label><input type="range" id="w-' + c.k + '" min="0" max="60" step="5" value="' + state.w[c.k] + '">';
-      w.appendChild(d);
-      d.querySelector("input").addEventListener("input", function (e) { state.w[c.k] = +e.target.value; $("wo-" + c.k).textContent = state.w[c.k]; renderRanking(); renderBets(); });
-    });
-    var r = document.createElement("button"); r.className = "btn"; r.textContent = "Reset weights"; r.style.alignSelf = "flex-start";
-    r.addEventListener("click", function () { CRIT.forEach(function (c) { state.w[c.k] = c.w; }); renderWeights(); renderRanking(); renderBets(); });
-    w.appendChild(r);
-  }
-  function renderRanking() {
-    var list = BETS.slice().sort(function (a, b) { return score(b) - score(a); }), r = $("ranking");
-    r.innerHTML = '<span class="eyebrow">Ranking · out of 100</span>';
-    list.forEach(function (b, i) {
-      var d = document.createElement("div"); d.className = "rank";
-      d.innerHTML = '<span class="n">' + (i + 1) + '</span><div class="bar"><i style="width:' + score(b) + '%;background:var(--' + b.h.toLowerCase() + '-soft)"></i><span>' + b.name + '</span></div><span class="v">' + score(b) + '</span>';
-      r.appendChild(d);
-    });
-  }
-
-  /* 06 Roadmap */
-  function renderRoadmap() {
-    var p = $("phases"); p.innerHTML = "";
-    PHASES.forEach(function (ph) {
-      var b = document.createElement("button"); b.className = "phase"; b.setAttribute("aria-pressed", String(state.phase === ph.k));
-      b.innerHTML = '<b>' + ph.t + '</b><span>' + ph.y + '</span>';
-      b.addEventListener("click", function () { state.phase = ph.k; renderRoadmap(); });
-      p.appendChild(b);
-    });
-    var cur = PHASES.filter(function (x) { return x.k === state.phase; })[0];
-    var lanes = $("lanes"); lanes.innerHTML = "";
-    var Y0 = 2027, Y1 = 2036;
-    function pct(y) { return (y - Y0) / (Y1 - Y0) * 100; }
-    BETS.forEach(function (b) {
-      var active = b.years[0] < cur.to && b.years[1] + 1 > cur.from;
-      var d = document.createElement("div"); d.className = "lane";
-      d.innerHTML = '<span>' + b.name + '</span><div class="track"><i class="' + (active ? "" : "dim") + '" style="left:' + pct(b.years[0]) + '%;width:' + (pct(b.years[1] + 1) - pct(b.years[0])) + '%;background:' + HZ[b.h].color + '"></i><b style="left:calc(' + pct(b.gateYear) + '% - 2px)" title="First gate"></b></div>';
-      lanes.appendChild(d);
-    });
-    $("phase-detail").innerHTML = '<b>' + cur.t + ' · ' + cur.y + '</b><ul>' + cur.d.map(function (x) { return "<li>" + x + "</li>"; }).join("") + "</ul>";
-  }
-
-  /* 07 KPIs */
-  function renderKpis() {
-    $("kpi-body").innerHTML = BETS.map(function (b) { return '<tr><td><b>' + b.name + '</b></td><td><span class="pill ' + b.h + '">' + b.h + '</span></td><td>' + b.gate + '</td><td>' + b.kpi + '</td></tr>'; }).join("");
-  }
-
-  /* 08 References chart */
-  function renderRefs() {
-    var rows = [
-      { n: "Harvard Business School", s: "FY2025 · research + IT", a: 137 / 1130 * 100, r: 172 / 1130 * 100 },
-      { n: "Coursera", s: "2025 · product R&D", a: 121.6 / 757.5 * 100, r: 0 },
-      { n: "IESE", s: "FY2022 · technology + research", a: 8.0 / 116.1 * 100, r: 6.8 / 116.1 * 100 },
-      { n: "IE (proposed)", s: "innovation budget only", a: 0, r: 0, ie: state.intensity }
-    ];
-    var max = 30, out = $("refbars"); out.innerHTML = "";
-    rows.forEach(function (x) {
-      var tot = x.ie != null ? x.ie : x.a + x.r;
-      var d = document.createElement("div"); d.className = "refbar";
-      var bars = x.ie != null ? '<i style="width:' + x.ie / max * 100 + '%;background:var(--h2)"></i>' :
-        '<i style="width:' + x.a / max * 100 + '%;background:var(--h1)"></i><i style="width:' + x.r / max * 100 + '%;background:var(--muted)"></i>';
-      d.innerHTML = '<div><b>' + x.n + '</b><small>' + x.s + '</small></div><div class="track2">' + bars + '</div><span class="v">' + tot.toFixed(1) + '%</span>';
-      out.appendChild(d);
-    });
-  }
-
-  /* Modal */
-  var lastFocus = null, current = null;
-  function openModal(id) {
-    var i = BETS.findIndex(function (b) { return b.id === id; }), b = BETS[i]; current = i;
-    lastFocus = document.activeElement;
-    var prev = BETS[(i + BETS.length - 1) % BETS.length], next = BETS[(i + 1) % BETS.length];
-    $("sheet").innerHTML = '<div class="top"><span class="pill ' + b.h + '">' + HZ[b.h].name + '</span><button class="x" id="m-close" aria-label="Close">×</button></div>' +
-      '<h3 id="m-title">' + b.name + '</h3><div class="amount">' + fmt(betAmount(b)) + ' <span class="eyebrow">a year · ' + Math.round(betAmount(b) / total() * 100) + '% of the budget</span></div>' +
-      '<dl><dt>What</dt><dd>' + b.what + '</dd><dt>M1 link</dt><dd>' + b.m1 + '</dd><dt>Owner</dt><dd>' + b.owner + '</dd><dt>First gate</dt><dd>' + b.gate + '</dd><dt>We measure</dt><dd>' + b.kpi + '</dd><dt>Next money</dt><dd>' + b.next + '</dd><dt>Runs</dt><dd>' + b.years[0] + ' to ' + b.years[1] + '</dd></dl>' +
-      '<div><span class="eyebrow">Scores · priority ' + score(b) + ' / 100</span><div class="minibars" style="margin-top:8px">' + CRIT.map(function (c) { return '<div>' + c.label + ' · ' + b.sc[c.k] + '/5<div class="m"><i style="width:' + b.sc[c.k] * 20 + '%"></i></div></div>'; }).join("") + '</div></div>' +
-      '<div class="nav2"><button class="btn" id="m-prev">← ' + prev.short + '</button><button class="btn" id="m-next">' + next.short + ' →</button></div>';
-    $("modal").hidden = false;
-    $("m-close").addEventListener("click", closeModal);
-    $("m-prev").addEventListener("click", function () { openModal(prev.id); });
-    $("m-next").addEventListener("click", function () { openModal(next.id); });
-    $("m-close").focus();
-  }
-  function closeModal() { $("modal").hidden = true; current = null; if (lastFocus && lastFocus.focus) lastFocus.focus(); }
-  $("modal").addEventListener("click", function (e) { if (e.target === $("modal")) closeModal(); });
-  document.addEventListener("keydown", function (e) {
-    if ($("modal").hidden) return;
-    if (e.key === "Escape") closeModal();
-    if (e.key === "ArrowRight") openModal(BETS[(current + 1) % BETS.length].id);
-    if (e.key === "ArrowLeft") openModal(BETS[(current + BETS.length - 1) % BETS.length].id);
-  });
-
-  /* Controls + scrollspy */
-  $("s-rev").addEventListener("input", function (e) { state.rev = +e.target.value; renderAll(); });
-  $("s-int").addEventListener("input", function (e) { state.intensity = +e.target.value; state.stance = ""; renderAll(); });
-  $("reset-sim").addEventListener("click", function () { state.rev = 350; state.intensity = 5; state.split = "ours"; state.stance = "lead"; $("s-rev").value = 350; $("s-int").value = 5; renderAll(); });
-  $("sort").addEventListener("change", function (e) { state.sort = e.target.value; renderBets(); });
-  var links = Array.prototype.slice.call(document.querySelectorAll("#navlinks a"));
-  if ("IntersectionObserver" in window) {
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) {
-        if (!en.isIntersecting) return;
-        links.forEach(function (a) { var on = a.getAttribute("href") === "#" + en.target.id; a.classList.toggle("on", on); if (on && a.scrollIntoView) { a.parentNode.scrollLeft = a.offsetLeft - 40; } });
-      });
-    }, { rootMargin: "-45% 0px -50% 0px" });
-    document.querySelectorAll("main section[id]").forEach(function (s) { io.observe(s); });
-  }
-
-  function renderAll() { renderStances(); renderBudget(); renderBets(); renderMap(); renderRefs(); }
-  renderDrivers(); renderFilters(); renderWeights(); renderRanking(); renderRoadmap(); renderKpis(); renderAll();
-})();
+const links=[...document.querySelectorAll('#links a')];
+const io=new IntersectionObserver(es=>es.forEach(en=>{if(!en.isIntersecting)return;links.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+en.target.id));}),{rootMargin:'-45% 0px -50% 0px'});
+document.querySelectorAll('section[id]').forEach(s=>io.observe(s));
+}
 </script>
-
 </body>
 </html>
